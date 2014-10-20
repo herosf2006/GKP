@@ -405,13 +405,7 @@ end
 -- 判断分配者
 ----------------------------------------------------------------------<
 GKP.IsDistributer = function()
-	local me = GetClientPlayer()
-	local team = GetClientTeam()	
-	local dwDistributerID = team.GetAuthorityInfo(TEAM_AUTHORITY_TYPE.DISTRIBUTE) 
-	if dwDistributerID == me.dwID then
-		return true
-	end
-	return false
+	return GetClientTeam().GetAuthorityInfo(TEAM_AUTHORITY_TYPE.DISTRIBUTE) == GetClientPlayer().dwID
 end
 ---------------------------------------------------------------------->
 -- 判断是否在副本地图
@@ -787,6 +781,9 @@ _GKP.GetSettingMenu = function()
 	table.insert(menu,_GKP.GetSchemeMenu())
 	table.insert(menu,{ bDevide = true})
 	table.insert(menu,{ szOption = "开发调试/测试人员", bCheck = true, bChecked = GKP.Config.bDebug,fnAction = function()
+		if IsAltKeyDown() and IsCtrlKeyDown() then
+			return ReloadUIAddon()
+		end
 		GKP.Confirm("警告：开启调试模式将会使插件无视权限规定，越权显示不可执行的操作，但这些并不能真正的被服务器接受，非开发者请不要勾选，避免造成误解，请勿在开团时尝试，可能造成记录混乱等问题。",function()
 			GKP.Config.bDebug = not GKP.Config.bDebug
 		end)
