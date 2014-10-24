@@ -1689,7 +1689,8 @@ end
 ----------------------------------------------------------------------<
 _GKP.DrawDistributeList = function(doodad)
 	local frame = Station.Lookup("Normal/GKP_Loot")
-	if #_GKP.aDistributeList == 0 then
+	local me = GetClientPlayer()
+	if #_GKP.aDistributeList == 0 or (not me.IsInParty() and not GKP.Config.bDebug) then
 		_GKP.dwOpenID = nil
 		return frame:Hide()
 	end
