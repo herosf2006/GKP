@@ -1303,7 +1303,6 @@ _GKP.Draw_GKP_Record = function(key,sort)
 	local txt = Station.Lookup("Normal/GKP/PageSet_Menu/Page_GKP_Record"):Lookup("","Text_GKP_RecordSettlement")
 	txt:SetText(string.format("统计：实际工资 ＝ %d金（拍卖所得：%d金 ＋ 额外补贴：%d金）%d条记录被删除",a+b,a,b,c))
 	txt:SetFontColor(255,255,0)
-	Output()
 end
 ---------------------------------------------------------------------->
 -- 和谐
