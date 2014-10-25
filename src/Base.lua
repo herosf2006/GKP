@@ -1298,10 +1298,12 @@ _GKP.Draw_GKP_Record = function(key,sort)
 			end
 		end
 	end
+	
 	_GKP.GKP_Record_Container:FormatAllContentPos()
 	local txt = Station.Lookup("Normal/GKP/PageSet_Menu/Page_GKP_Record"):Lookup("","Text_GKP_RecordSettlement")
 	txt:SetText(string.format("统计：实际工资 ＝ %d金（拍卖所得：%d金 ＋ 额外补贴：%d金）%d条记录被删除",a+b,a,b,c))
 	txt:SetFontColor(255,255,0)
+	Output()
 end
 ---------------------------------------------------------------------->
 -- 和谐
@@ -1559,7 +1561,7 @@ end
 ----------------------------------------------------------------------<
 _GKP.GetRecordSum = function(bAccurate)
 	if IsEmpty(GKP("GKP_Record")) then
-		return 0
+		return 0,0
 	end
 	local a,b = 0,0
 	for k,v in ipairs(GKP("GKP_Record")) do
