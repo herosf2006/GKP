@@ -1892,7 +1892,7 @@ _GKP.DrawDistributeList = function(doodad)
 						if p.bOnlineFlag then
 							_GKP.DistributeItem(item,p,doodad,true)
 						else
-							GKP.Sysmsg("没有拾取对象。")
+							GKP.Sysmsg("没有拾取对象，可能是掉线了。")
 						end
 						return
 					end
@@ -1933,7 +1933,7 @@ _GKP.DrawDistributeList = function(doodad)
 					break
 				end
 			end
-			if p then  -- 这个人存在团队的情况下
+			if p and p.bOnlineFlag then  -- 这个人存在团队的情况下
 				local szXml = GetFormatText("你确定要将以下物品\n", 162,255,255,255)
 				local r,g,b = GKP.GetForceCol(p.dwForceID)
 				for k,v in ipairs(tEquipment) do
@@ -1957,6 +1957,8 @@ _GKP.DrawDistributeList = function(doodad)
 					{szOption = g_tStrings.STR_HOTKEY_CANCEL},
 				}
 				MessageBox(msg)	
+			else
+				return GKP.Alert("没有拾取对象，可能是掉线了。")
 			end
 		end
 	else
