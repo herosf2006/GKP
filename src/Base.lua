@@ -87,9 +87,9 @@ local _GKP = {
 			{_L["Treasure Chests"],"",true},
 			{_L["BiXi Fragment"],"",true},
 			{_L["Boss"],"",true},
-			{_L["Banquet Allowance "],-1000,true},
-			{_L["Fines "],"",true},
-			{_L["Others "],"",true},
+			{_L["Banquet Allowance"],-1000,true},
+			{_L["Fines"],"",true},
+			{_L["Others"],"",true},
 		},
 		Scheme = {
 			{100,true},
@@ -1145,7 +1145,7 @@ _GKP.Draw_GKP_Buff = function(key,sort)
 		item:Lookup("Text_Name").OnItemMouseEnter = function()
 			local szIcon,nFrame = GetForceImage(v.dwForceID)
 			local r,g,b = GKP.GetForceCol(v.dwForceID)
-			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szName .. "：\n",136,r,g,b)
+			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szName .. _L[":\n"],136,r,g,b)
 			szXml = szXml .. GetFormatText(_L["Serious Injured Record as Shown Below\n\n"],136,255,255,255)
 			if not _GKP.DeathWarn.tDeath[v.dwID] or #_GKP.DeathWarn.tDeath[v.dwID] == 0 then
 				szXml = szXml ..GetFormatText(_L["No Record"],136,255,255,0)
@@ -1310,7 +1310,7 @@ _GKP.Draw_GKP_Record = function(key,sort)
 			item:Lookup("Text_Name").OnItemMouseEnter = function()
 				local szIcon,nFrame = GetForceImage(v.dwForceID)
 				local r,g,b = GKP.GetForceCol(v.dwForceID)
-				local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. "：\n",136,r,g,b)
+				local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. _L[":\n"],136,r,g,b)
 				szXml = szXml .. GetFormatText(_L["System Information as Shown Below\n\n"],136,255,255,255)
 				local nNum,nNum1,nNum2 = 0,0,0
 				for kk,vv in ipairs(GKP("GKP_Record")) do
@@ -1588,7 +1588,7 @@ _GKP.GKP_OweList = function()
 	GKP.Talk(_L["Information on Debt"],szTarName)
 	for k,v in pairs(tMember2) do
 		if v.nGold < 0 then
-			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "：" .. v.nGold .. _L["Gold."]}},szTarName)
+			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = _L[":"] .. v.nGold .. _L["Gold."]}},szTarName)
 		else
 			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "：+" .. v.nGold .. _L["Gold."]}},szTarName)
 		end
@@ -1668,7 +1668,7 @@ _GKP.GKP_SpendingList = function()
 
 	table.sort(sort,function(a,b) return a.nGold < b.nGold end)
 	for k,v in ipairs(sort) do
-		GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "：" .. v.nGold .. _L["Gold."]}},szTarName)
+		GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = _L[":"] .. v.nGold .. _L["Gold."]}},szTarName)
 	end
 	GKP.Talk(_L["Toal Auction:"] .. _GKP.GetRecordSum() .. _L["Gold."],szTarName)
 end
@@ -2488,7 +2488,7 @@ _GKP.Draw_GKP_Account = function(key,sort)
 		item:Lookup("Text_Name").OnItemMouseEnter = function()
 			local szIcon,nFrame = GetForceImage(v.dwForceID)
 			local r,g,b = GKP.GetForceCol(v.dwForceID)
-			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. "：\n",136,r,g,b)
+			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. _L[":\n"],136,r,g,b)
 			szXml = szXml .. GetFormatText(_L["System Information as Shown Below\n\n"],136,255,255,255)
 			local nNum,nNum1,nNum2 = 0,0,0
 			for kk,vv in ipairs(GKP("GKP_Record")) do
@@ -2751,7 +2751,7 @@ DeathWarn.OnDeath = function(dwTarget, szKiller)
 			end
 			DeathWarn.tDamage[dwTarget] = nil
 			if GKP.Config.bDeathWarn then
-				OutputMessage("MSG_SYS",_L["Boardcast of Serious Injure:"] .. "["..tInfo.szTarget.."]" .. _L["By"] .. "["..tInfo.szCaster.."]" .. _L["The"] .."<"..tInfo.szSkillName..">" .. _L["Lead to"] .. ""..tInfo.szValue.."，" .. _L["Serious injured!"] .. "\n")
+				OutputMessage("MSG_SYS",_L["Boardcast of Serious Injure:"] .. "["..tInfo.szTarget.."]" .. _L["By"] .. "["..tInfo.szCaster.."]" .. _L["The"] .."<"..tInfo.szSkillName..">" .. _L["Lead to"] .. ""..tInfo.szValue.."," .. _L["Serious injured!"] .. "\n")
 			end
 		end
 	end
