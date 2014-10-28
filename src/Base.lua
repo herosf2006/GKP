@@ -1843,7 +1843,7 @@ _GKP.DrawDistributeList = function(doodad)
 			table.insert(tMenu,{ szOption = GetItemNameByItem(item) , bDisable = true})
 			table.insert(tMenu,{bDevide = true})
 			table.insert(tMenu,{ 
-				szOption = "Roll点",
+				szOption = "Roll",
 				fnAction = function()
 					if MY_RollMonitor then
 						if MY_RollMonitor.OpenPanel and MY_RollMonitor.Clear then
