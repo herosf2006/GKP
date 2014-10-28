@@ -1,9 +1,23 @@
----------------------------------------------------------------------->
--- 脚本名称:    E:\JX3_EXP\bin\zhcn_exp\interface\JH\GKP\src\Base.lua
--- 更新时间:    2014/10/20 14:07:11
--- 更新用户:    Webster
--- 脚本说明:    GKP金团记录 开源支持学习
-----------------------------------------------------------------------<
+---------------------------------------------------------------------
+-- 多语言处理
+---------------------------------------------------------------------
+local function GetLang()
+	local _, _, szLang = GetVersion()
+	local t0 = LoadLUAData("interface/JH/GKP/lang/default") or {}
+	local t1 = LoadLUAData("interface/JH/GKP/lang/" .. szLang) or {}
+	for k, v in pairs(t0) do
+		if not t1[k] then
+			t1[k] = v
+		end
+	end
+	setmetatable(t1, {
+		__index = function(t, k) return k end,
+		__call = function(t, k, ...) return string.format(t[k] or k, ...) end,
+	})
+	return t1
+end
+local _L = GetLang()
+
 GKP = {
 	Config = {
 		bDebug = false, -- /script ... 
@@ -25,7 +39,7 @@ GKP = {
 -- 本地函数与变量
 ----------------------------------------------------------------------<
 local _GKP = {
-	szVersion = "v0.9.7",
+	szVersion = "v0.9.9",
 	szPath = "interface/JH/@DATA/",
 	szIniFile = "interface/JH/GKP/ui/GKP.ini",
 	aDoodadCache = {}, -- 拾取列表cache
@@ -506,7 +520,9 @@ function GKP.OnFrameCreate()
 	if IsFileExist("interface/ZFix/GKP") then -- 和谐自用
 		PageSet:Append("WndButton2",{x = 220,y = 610,txt = "发钱"}):Click(_GKP.GKP_Bidding)
 	end
-	
+	PageSet:Fetch("WndCheck_GKP_Record"):Fetch("Text_GKP_Record"):Text("物品记录")
+	PageSet:Fetch("WndCheck_GKP_Account"):Fetch("Text_GKP_Account"):Text("金钱记录")
+	PageSet:Fetch("WndCheck_GKP_Buff"):Fetch("Text_GKP_Buff"):Text("团队概况")
 	
 	local w,h = record:Size()
 	record:Pos((fx-w)/2,(fy-h)/2)
@@ -520,7 +536,13 @@ function GKP.OnFrameCreate()
 		FireEvent("GKP_DEL_DISTRIBUTE_ITEM")
 	end)
 	
-	record:Append("WndButton2",{x = 145,y = 300,txt = "确定"}):Name("btn_ok")
+	-- append text
+	record:Append("Text",{x = 60,y = 50,font = 65,txt = "记账到："})
+	record:Append("Text",{x = 60,y = 124,font = 65,txt = "物品名称："})
+	record:Append("Text",{x = 60,y = 154,font = 65,txt = "获得途径："})
+	record:Append("Text",{x = 60,y = 184,font = 65,txt = "拍卖价格："})
+	record:Append("WndCheckBox",{x = 20,y = 300,font = 65,txt = "散件老板"}):Name("WndCheckBox")
+	record:Append("WndButton2",{x = 145,y = 300,txt = g_tStrings.STR_HOTKEY_SURE}):Name("btn_ok")
 	record:Append("WndComboBox",{x = 135,y = 53,txt = "选择成员"}):Name("TeamList"):Menu(GKP.GetTeamList)
 	record:Append("WndEdit",{x = 135,y = 155,w = 185,h = 25}):Name("Source")
 	
@@ -627,15 +649,26 @@ function GKP.OnFrameCreate()
 			end
 		end)
 	end):Change(fnAction)
+
+	
 	-- 排序
 	local page = this:Lookup("PageSet_Menu/Page_GKP_Record")
-	for k ,v in ipairs({false,"szPlayer","szName","nMoney","szNpcName","nTime"}) do
-		if v then
+	local t = {
+		{"#",false},
+		{"szPlayer","获得者"},
+		{"szName","物品名称"},
+		{"nMoney","拍卖价格"},
+		{"szNpcName","获得途径"},
+		{"nTime","获得时间"},
+	}
+	for k ,v in ipairs(t) do
+		if v[2] then
 			local txt = page:Lookup("","Text_Record_Break"..k)
 			txt:RegisterEvent(786)
+			txt:SetText(v[2])
 			txt.OnItemLButtonClick = function()
 				local sort = txt.sort or "asc"
-				pcall(_GKP.Draw_GKP_Record,v,sort)
+				pcall(_GKP.Draw_GKP_Record,v[1],sort)
 				if sort == "asc" then
 					txt.sort = "desc"
 				else
@@ -653,13 +686,23 @@ function GKP.OnFrameCreate()
 	
 	-- 排序2
 	local page = this:Lookup("PageSet_Menu/Page_GKP_Account")
-	for k ,v in ipairs({false,"szPlayer","nGold","szPlayer","dwMapID","nTime"}) do
-		if v then
+	local t = {
+		{"#",false},
+		{"szPlayer","交易对象"},
+		{"nGold","金钱变动"},
+		{"szPlayer","金钱变动方式"},
+		{"dwMapID","金钱变动时所在地图"},
+		{"nTime","时间"},
+	}
+	
+	for k ,v in ipairs(t) do
+		if v[2] then
 			local txt = page:Lookup("","Text_Account_Break"..k)
 			txt:RegisterEvent(786)
+			txt:SetText(v[2])
 			txt.OnItemLButtonClick = function()
 				local sort = txt.sort or "asc"
-				pcall(_GKP.Draw_GKP_Account,v,sort)
+				pcall(_GKP.Draw_GKP_Account,v[1],sort)
 				if sort == "asc" then
 					txt.sort = "desc"
 				else
@@ -676,24 +719,36 @@ function GKP.OnFrameCreate()
 	end
 	-- 排序3
 	local page = this:Lookup("PageSet_Menu/Page_GKP_Buff")
-	for k ,v in ipairs({false,"dwForceID","nScore1","nScore2","nEquipScore","bFightState"}) do
-		if v then
+	local t = {
+		{"#",false},
+		{"dwForceID","团队成员"},
+		{"nScore1","增益物品"},
+		{"nScore2","增益效果"},
+		{"nEquipScore","装备分"},
+		{"bFightState","战斗情况"},
+		{false,"更新时间"}
+	}
+	for k ,v in ipairs(t) do
+		if v[2] then
 			local txt = page:Lookup("","Text_Buff_Break"..k)
 			txt:RegisterEvent(786)
-			txt.OnItemLButtonClick = function()
-				local sort = txt.sort or "asc"
-				pcall(_GKP.Draw_GKP_Buff,v,sort)
-				if sort == "asc" then
-					txt.sort = "desc"
-				else
-					txt.sort = "asc"
+			txt:SetText(v[2])
+			if v[1] then
+				txt.OnItemLButtonClick = function()
+					local sort = txt.sort or "asc"
+					pcall(_GKP.Draw_GKP_Buff,v,sort)
+					if sort == "asc" then
+						txt.sort = "desc"
+					else
+						txt.sort = "asc"
+					end
 				end
-			end
-			txt.OnItemMouseEnter = function()
-				this:SetFontColor(255,128,0)
-			end
-			txt.OnItemMouseLeave = function()
-				this:SetFontColor(255,255,255)
+				txt.OnItemMouseEnter = function()
+					this:SetFontColor(255,128,0)
+				end
+				txt.OnItemMouseLeave = function()
+					this:SetFontColor(255,255,255)
+				end
 			end
 		end
 	end
@@ -780,7 +835,7 @@ _GKP.GetSettingMenu = function()
 	table.insert(menu,_GKP.GetSubsidiesMenu())
 	table.insert(menu,_GKP.GetSchemeMenu())
 	table.insert(menu,{ bDevide = true})
-	table.insert(menu,{ szOption = "开发调试/测试人员", bCheck = true, bChecked = GKP.Config.bDebug,fnAction = function()
+	table.insert(menu,{ szOption = _L["Debug"], bCheck = true, bChecked = GKP.Config.bDebug,fnAction = function()
 		if IsAltKeyDown() and IsCtrlKeyDown() then
 			return ReloadUIAddon()
 		end
@@ -1410,7 +1465,7 @@ _GKP.OnMsg = function()
 			if err then
 				return GKP.Sysmsg("数据共享异常，请联系作者反馈，微博ID：萌动小黄鸡。")
 			end
-			GKP.Confirm("数据同步完毕，你还有最后一次机会确认是否覆盖现有数据？\n拍团数据：" .. #tData.GKP_Record .. "\n交易数据：" .. #tData.GKP_Account,function()
+			GKP.Confirm(string.format("数据同步完毕，你还有最后一次机会确认是否覆盖现有数据？\n拍团数据：%s\n交易数据：%s",#tData.GKP_Record,#tData.GKP_Account) ,function()
 				_GKP.GKP_Record = tData.GKP_Record
 				_GKP.GKP_Account = tData.GKP_Account
 				pcall(_GKP.Draw_GKP_Record)
@@ -1451,7 +1506,7 @@ _GKP.GKP_Recovery = function()
 	_GKP.szName = _GKP.szName or me.szName
 	local menu = {}	
 	table.insert(menu,{
-		szOption = "读取数据的角色名：" .. _GKP.szName .. "（点击修改）",
+		szOption = string.format("读取数据的角色名：%s（点击修改）",_GKP.szName),
 		rgb = {255,255,0},
 		fnAction = function()
 			GetUserInput("修改导入角色名",function(szText)
@@ -1486,7 +1541,7 @@ _GKP.GKP_Clear = function()
 		pcall(_GKP.Draw_GKP_Account)
 		_GKP.nNowMoney = GetClientPlayer().GetMoney().nGold
 		_GKP.tDistributeRecords = {}
-		GKP.Alert("所有记录成功清空")
+		GKP.Alert("所有记录成功清空。")
 	end)
 end
 ---------------------------------------------------------------------->
