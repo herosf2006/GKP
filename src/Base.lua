@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------
--- ¶àÓïÑÔ´¦Àí
+-- å¤šè¯­è¨€å¤„ç†
 ---------------------------------------------------------------------
 local function GetLang()
 	local _, _, szLang = GetVersion()
@@ -18,34 +18,35 @@ local function GetLang()
 end
 local _L = GetLang()
 
+
 GKP = {
 	Config = {
 		bDebug = false, -- /script ... 
-		bOn = true, -- ÊÇ·ÖÅäÕß¾Í¿ªÆô
-		bOn2 = false, -- ²»ÊÇ·ÖÅäÕß¹Ø±Õ
-		bMoneyTalk = false, -- ½ğÇ®±ä¶¯º°»°
-		bAlertMessage = true, -- ½øÈë¸±±¾ÌáĞÑÇå¿ÕÊı¾İ
-		bCheckScore = true, -- ²é¿´×°±¸·Ö
-		bMoneySystem = false, -- ¼ÇÂ¼ÏµÍ³½ğÇ®±ä¶¯
-		bDeathWarn = false, -- ÖØÉËÌáÊ¾
-		bAutoSetMoney = false, --×Ô¶¯ÉèÖÃ·¢²¼Ê±µÄ½ğÇ®
-		bAutoBX = true, -- ×Ô¶¯ÉèÖÃ±ÌçôËéÆ¬µÄ¼Û¸ñ
+		bOn = true, -- æ˜¯åˆ†é…è€…å°±å¼€å¯
+		bOn2 = false, -- ä¸æ˜¯åˆ†é…è€…å…³é—­
+		bMoneyTalk = false, -- é‡‘é’±å˜åŠ¨å–Šè¯
+		bAlertMessage = true, -- è¿›å…¥å‰¯æœ¬æé†’æ¸…ç©ºæ•°æ®
+		bCheckScore = true, -- æŸ¥çœ‹è£…å¤‡åˆ†
+		bMoneySystem = false, -- è®°å½•ç³»ç»Ÿé‡‘é’±å˜åŠ¨
+		bDeathWarn = false, -- é‡ä¼¤æç¤º
+		bAutoSetMoney = false, --è‡ªåŠ¨è®¾ç½®å‘å¸ƒæ—¶çš„é‡‘é’±
+		bAutoBX = true, -- è‡ªåŠ¨è®¾ç½®ç¢§çºç¢ç‰‡çš„ä»·æ ¼
 		bDisplayEmptyRecords = true, -- show 0 record
-		bAutoSync = true, -- ×Ô¶¯½ÓÊÕ·ÖÅäÕßµÄÍ¬²½ĞÅÏ¢
+		bAutoSync = true, -- è‡ªåŠ¨æ¥æ”¶åˆ†é…è€…çš„åŒæ­¥ä¿¡æ¯
 	}
 }
 
 ---------------------------------------------------------------------->
--- ±¾µØº¯ÊıÓë±äÁ¿
+-- æœ¬åœ°å‡½æ•°ä¸å˜é‡
 ----------------------------------------------------------------------<
 local _GKP = {
 	szVersion = "v0.9.9",
 	szPath = "interface/JH/@DATA/",
 	szIniFile = "interface/JH/GKP/ui/GKP.ini",
-	aDoodadCache = {}, -- Ê°È¡ÁĞ±ícache
-	aDistributeList = {}, -- µ±Ç°Ê°È¡ÁĞ±í
-	tLootListMoney = {}, -- ·¢²¼µÄ½ğÇ®cache
-	tDistribute = {}, -- ´ı¼ÇÕËÁĞ±í
+	aDoodadCache = {}, -- æ‹¾å–åˆ—è¡¨cache
+	aDistributeList = {}, -- å½“å‰æ‹¾å–åˆ—è¡¨
+	tLootListMoney = {}, -- å‘å¸ƒçš„é‡‘é’±cache
+	tDistribute = {}, -- å¾…è®°è´¦åˆ—è¡¨
 	tDistributeRecords = {},
 	tDungeonList = {},
 	tViewInvite = {},
@@ -59,7 +60,7 @@ local _GKP = {
 		{szName = "test user 5", dwForceID = 9, dwForce = 9, bOnlineFlag = true, dwID = 4},
 		{szName = "test user 6", dwForceID = 0, dwForce = 0, bOnlineFlag = true, dwID = 5},
 		{szName = "test user 7", dwForceID = 6, dwForce = 6, bOnlineFlag = true, dwID = 6},
-		{szName = "test user 8", dwForceID = 11, dwForce = 11, bOnlineFlag = true, dwID = 8},
+		{szName = "test user 8", dwForceID = 21, dwForce = 21, bOnlineFlag = true, dwID = 8},
 		{szName = "test user 9", dwForceID = 6, dwForce = 6, bOnlineFlag = true, dwID = 9},
 		{szName = "test user 10 ban", dwForceID = 5, dwForce = 5, bOnlineFlag = false, dwID = 10},
 	},
@@ -83,12 +84,12 @@ local _GKP = {
 	GKP_Account = {},
 	Config = {
 		Subsidies = {
-			{"±¦Ïä","",true},
-			{"±ÌçôËéÆ¬","",true},
-			{"ÀÏ°å°üÍÅ","",true},
-			{"ÑçÏ¯²¹Ìù",-1000,true},
-			{"·¸´í·£¿î","",true},
-			{"ÆäËû","",true},
+			{_L["Treasure Chests"],"",true},
+			{_L["BiXi Fragment"],"",true},
+			{_L["Boss"],"",true},
+			{_L["Banquet Allowance "],-1000,true},
+			{_L["Fines "],"",true},
+			{_L["Others "],"",true},
 		},
 		Scheme = {
 			{100,true},
@@ -107,17 +108,17 @@ local _GKP = {
 			{100000,true},
 		},
 		Special = {
-			["¸¡ÍÀÔÉÌú"] = true,
-			["ÎÚ½ğÔÉÌú"] = true,
-			["ÌìÍâÔÉÌú"] = true,
-			["ÊñÓñÁÑÊ¯"] = true,
-			["±ÌçôËéÆ¬"] = true,
+			[_L["FuTu Meteoric Iron "]] = true,
+			[_L["WuJin Meteoric Iron "]] = true,
+			[_L["TianWai Meteoric Iron "]] = true,
+			[_L["ShuYu Stone"]] = true,
+			[_L["BiXi Fragment"]] = true,
 		},
 	}
 }
 _GKP.Config = LoadLUAData(_GKP.szPath.. "/config/gkp.cfg") or _GKP.Config
 ---------------------------------------------------------------------->
--- Ö°Òµ×ÅÉ«
+-- èŒä¸šç€è‰²
 ----------------------------------------------------------------------<
 setmetatable(_GKP.tForceCol,{ __call = function(me,dwForce)
 	if me[dwForce] then
@@ -127,7 +128,7 @@ setmetatable(_GKP.tForceCol,{ __call = function(me,dwForce)
 	end
 end})
 ---------------------------------------------------------------------->
--- Êı¾İ´¦Àí
+-- æ•°æ®å¤„ç†
 ----------------------------------------------------------------------<
 setmetatable(GKP,{ __call = function(me,key,value,sort)
 	if _GKP[key] then
@@ -202,7 +203,7 @@ function GetItemNameByItem(item)
 end
 end
 ---------------------------------------------------------------------->
--- ±¾µØº¯Êı
+-- æœ¬åœ°å‡½æ•°
 ----------------------------------------------------------------------<
 _GKP.SaveConfig = function()
 	SaveLUAData(_GKP.szPath .. "/config/gkp.cfg",_GKP.Config)
@@ -266,17 +267,17 @@ _GKP.Init = function()
 		local me = GetClientPlayer()
 		_GKP.nNowMoney = me.GetMoney().nGold
 		_GKP.bInit = true
-		GKP.DelayCall(50,function() -- InitÑÓºó ±ÜÃâºÍ½øÈë¸±±¾³åÍ»
+		GKP.DelayCall(50,function() -- Initå»¶å é¿å…å’Œè¿›å…¥å‰¯æœ¬å†²çª
 			_GKP.GKP_LoadData(me.szName .. "/" .. FormatTime("%Y-%m-%d",GetCurrentTime()))
 		end)
 	end
 end
-RegisterEvent("LOADING_END",_GKP.Init) -- LOADING_END Ö÷ÒªÊÇÎªÁË»ñÈ¡Ãû×Ö ËùÒÔÑ¹µ½×îºó¼ÓÔØ
+RegisterEvent("LOADING_END",_GKP.Init) -- LOADING_END ä¸»è¦æ˜¯ä¸ºäº†è·å–åå­— æ‰€ä»¥å‹åˆ°æœ€ååŠ è½½
 
 ---------------------------------------------------------------------->
--- ³£ÓÃº¯Êı
+-- å¸¸ç”¨å‡½æ•°
 ----------------------------------------------------------------------<
-GKP.Random = function() -- Éú³ÉÒ»¸öËæ»ú×Ö·û´® Õâ»¹ÄÜÖØ¸´ÎÒ³ÔÏè
+GKP.Random = function() -- ç”Ÿæˆä¸€ä¸ªéšæœºå­—ç¬¦ä¸² è¿™è¿˜èƒ½é‡å¤æˆ‘åƒç¿”
 	local a = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,_+ [];*-/"
 	local t = {}
 	for i = 1, 64 do
@@ -416,13 +417,13 @@ GKP.GetMoneyCol = function(Money)
 	end
 end
 ---------------------------------------------------------------------->
--- ÅĞ¶Ï·ÖÅäÕß
+-- åˆ¤æ–­åˆ†é…è€…
 ----------------------------------------------------------------------<
 GKP.IsDistributer = function()
 	return GetClientTeam().GetAuthorityInfo(TEAM_AUTHORITY_TYPE.DISTRIBUTE) == GetClientPlayer().dwID
 end
 ---------------------------------------------------------------------->
--- ÅĞ¶ÏÊÇ·ñÔÚ¸±±¾µØÍ¼
+-- åˆ¤æ–­æ˜¯å¦åœ¨å‰¯æœ¬åœ°å›¾
 ----------------------------------------------------------------------<
 GKP.IsInDungeon = function()
 	if IsEmpty(_GKP.tDungeonList) then
@@ -439,7 +440,7 @@ GKP.IsInDungeon = function()
 end
 
 ---------------------------------------------------------------------->
--- ¸ñÊ½»¯itemÁ´½Ó
+-- æ ¼å¼åŒ–itemé“¾æ¥
 ----------------------------------------------------------------------<
 GKP.GetFormatLink = function(item)
 	if item.nGenre == ITEM_GENRE.BOOK then
@@ -449,7 +450,7 @@ GKP.GetFormatLink = function(item)
 	end
 end
 ---------------------------------------------------------------------->
--- »ñÈ¡ÍÅ¶Ó³ÉÔ± menu
+-- è·å–å›¢é˜Ÿæˆå‘˜ menu
 ----------------------------------------------------------------------<
 GKP.GetTeamList = function()
 	local TeamMemberList = GetClientTeam().GetTeamMemberList()
@@ -483,7 +484,7 @@ end
 
 
 ---------------------------------------------------------------------->
--- ´°Ìå´´½¨Ê±»á±»µ÷ÓÃ
+-- çª—ä½“åˆ›å»ºæ—¶ä¼šè¢«è°ƒç”¨
 ----------------------------------------------------------------------<
 function GKP.OnFrameCreate()
 	_GKP.frame = this
@@ -503,26 +504,26 @@ function GKP.OnFrameCreate()
 	local PageSet = ui:Fetch("PageSet_Menu")
 	local record = GUI(Station.Lookup("Normal1/GKP_Record"))
 	
-	ui:Pos((fx-w)/2,(fy-h)/2):Append("WndComboBox",{x = 805,y = 52,txt = "ÉèÖÃ"}):Menu(_GKP.GetSettingMenu)
+	ui:Pos((fx-w)/2,(fy-h)/2):Append("WndComboBox",{x = 805,y = 52,txt = _L["Setting"]}):Menu(_GKP.GetSettingMenu)
 	ui:Fetch("Btn_Close"):Click(_GKP.ClosePanel)
-	PageSet:Append("WndButton2",{x = 50,y = 610,txt = "ÊÖ¶¯Ìí¼Ó"}):Click(function()
+	PageSet:Append("WndButton2",{x = 50,y = 610,txt = _L["Add Manually"]}):Click(function()
 		if record:IsVisible() then
-			return GKP.Alert("µ±Ç°ÎïÆ·»¹Ã»ÓĞ¼ÇÂ¼¡£")
+			return GKP.Alert(_L["No Record For Current Object."])
 		end
 		pcall(_GKP.Record)
 	end)
-	PageSet:Append("WndButton2",{x = 850,y = 610,txt = "½áËã¹¤×Ê"}):Click(_GKP.GKP_Calculation)
-	PageSet:Append("WndButton2",{x = 745,y = 610,txt = "Ïû·ÑÇé¿ö"}):Click(_GKP.GKP_SpendingList)
-	PageSet:Append("WndButton2",{x = 640,y = 610,txt = "Ç·Õ®·¢²¼"}):Click(_GKP.GKP_OweList)
-	PageSet:Append("WndButton2",{x = 535,y = 610,txt = "Çå¿Õ¼ÇÂ¼"}):Click(_GKP.GKP_Clear)
-	PageSet:Append("WndButton2",{x = 430,y = 610,txt = "¼ÓÔØ¼ÇÂ¼"}):Click(_GKP.GKP_Recovery)
-	PageSet:Append("WndButton2",{x = 325,y = 610,txt = "ÊÖ¶¯Í¬²½"}):Click(_GKP.GKP_Sync)
-	if IsFileExist("interface/ZFix/GKP") then -- ºÍĞ³×ÔÓÃ
-		PageSet:Append("WndButton2",{x = 220,y = 610,txt = "·¢Ç®"}):Click(_GKP.GKP_Bidding)
+	PageSet:Append("WndButton2",{x = 850,y = 610,txt = _L["Wage Calculation"]}):Click(_GKP.GKP_Calculation)
+	PageSet:Append("WndButton2",{x = 745,y = 610,txt = _L["Consumption"]}):Click(_GKP.GKP_SpendingList)
+	PageSet:Append("WndButton2",{x = 640,y = 610,txt = _L["Debt Issued"]}):Click(_GKP.GKP_OweList)
+	PageSet:Append("WndButton2",{x = 535,y = 610,txt = _L["Wipe Record"]}):Click(_GKP.GKP_Clear)
+	PageSet:Append("WndButton2",{x = 430,y = 610,txt = _L["Loading Record"]}):Click(_GKP.GKP_Recovery)
+	PageSet:Append("WndButton2",{x = 325,y = 610,txt = _L["Manual SYNC"]}):Click(_GKP.GKP_Sync)
+	if IsFileExist("interface/ZFix/GKP") then -- å’Œè°è‡ªç”¨
+		PageSet:Append("WndButton2",{x = 220,y = 610,txt = _L["Team Bidding"]}):Click(_GKP.GKP_Bidding)
 	end
-	PageSet:Fetch("WndCheck_GKP_Record"):Fetch("Text_GKP_Record"):Text("ÎïÆ·¼ÇÂ¼")
-	PageSet:Fetch("WndCheck_GKP_Account"):Fetch("Text_GKP_Account"):Text("½ğÇ®¼ÇÂ¼")
-	PageSet:Fetch("WndCheck_GKP_Buff"):Fetch("Text_GKP_Buff"):Text("ÍÅ¶Ó¸Å¿ö")
+	PageSet:Fetch("WndCheck_GKP_Record"):Fetch("Text_GKP_Record"):Text(_L["Item Record"])
+	PageSet:Fetch("WndCheck_GKP_Account"):Fetch("Text_GKP_Account"):Text(_L["Money Rocord"])
+	PageSet:Fetch("WndCheck_GKP_Buff"):Fetch("Text_GKP_Buff"):Text(_L["Team Profile"])
 	
 	local w,h = record:Size()
 	record:Pos((fx-w)/2,(fy-h)/2)
@@ -537,13 +538,13 @@ function GKP.OnFrameCreate()
 	end)
 	
 	-- append text
-	record:Append("Text",{x = 60,y = 50,font = 65,txt = "¼ÇÕËµ½£º"})
-	record:Append("Text",{x = 60,y = 124,font = 65,txt = "ÎïÆ·Ãû³Æ£º"})
-	record:Append("Text",{x = 60,y = 154,font = 65,txt = "»ñµÃÍ¾¾¶£º"})
-	record:Append("Text",{x = 60,y = 184,font = 65,txt = "ÅÄÂô¼Û¸ñ£º"})
-	record:Append("WndCheckBox",{x = 20,y = 300,font = 65,txt = "É¢¼şÀÏ°å"}):Name("WndCheckBox")
+	record:Append("Text",{x = 60,y = 50,font = 65,txt = _L["Keep Account to:"]})
+	record:Append("Text",{x = 60,y = 124,font = 65,txt = _L["Name of the Item:"]})
+	record:Append("Text",{x = 60,y = 154,font = 65,txt = _L["Route of Acquiring:"]})
+	record:Append("Text",{x = 60,y = 184,font = 65,txt = _L["Auction Price:"]})
+	record:Append("WndCheckBox",{x = 20,y = 300,font = 65,txt = _L["Equiptment Boss"]}):Name("WndCheckBox")
 	record:Append("WndButton2",{x = 145,y = 300,txt = g_tStrings.STR_HOTKEY_SURE}):Name("btn_ok")
-	record:Append("WndComboBox",{x = 135,y = 53,txt = "Ñ¡Ôñ³ÉÔ±"}):Name("TeamList"):Menu(GKP.GetTeamList)
+	record:Append("WndComboBox",{x = 135,y = 53,txt = _L["Select Member"]}):Name("TeamList"):Menu(GKP.GetTeamList)
 	record:Append("WndEdit",{x = 135,y = 155,w = 185,h = 25}):Name("Source")
 	
 	
@@ -651,15 +652,15 @@ function GKP.OnFrameCreate()
 	end):Change(fnAction)
 
 	
-	-- ÅÅĞò
+	-- æ’åº
 	local page = this:Lookup("PageSet_Menu/Page_GKP_Record")
 	local t = {
 		{"#",false},
-		{"szPlayer","»ñµÃÕß"},
-		{"szName","ÎïÆ·Ãû³Æ"},
-		{"nMoney","ÅÄÂô¼Û¸ñ"},
-		{"szNpcName","»ñµÃÍ¾¾¶"},
-		{"nTime","»ñµÃÊ±¼ä"},
+		{"szPlayer",_L["Gainer"]},
+		{"szName",_L["Name of the Items"]},
+		{"nMoney",_L["Auction Price"]},
+		{"szNpcName",_L["Source of the Object"]},
+		{"nTime",_L["Distribution Time"]},
 	}
 	for k ,v in ipairs(t) do
 		if v[2] then
@@ -684,15 +685,15 @@ function GKP.OnFrameCreate()
 		end
 	end
 	
-	-- ÅÅĞò2
+	-- æ’åº2
 	local page = this:Lookup("PageSet_Menu/Page_GKP_Account")
 	local t = {
 		{"#",false},
-		{"szPlayer","½»Ò×¶ÔÏó"},
-		{"nGold","½ğÇ®±ä¶¯"},
-		{"szPlayer","½ğÇ®±ä¶¯·½Ê½"},
-		{"dwMapID","½ğÇ®±ä¶¯Ê±ËùÔÚµØÍ¼"},
-		{"nTime","Ê±¼ä"},
+		{"szPlayer",_L["Transation Target"]},
+		{"nGold",_L["Changes in Money"]},
+		{"szPlayer",_L["Ways of Money Change"]},
+		{"dwMapID",_L["The Map of Current Location when Money Changes"]},
+		{"nTime",_L["Record of All information of Money Change"]},
 	}
 	
 	for k ,v in ipairs(t) do
@@ -717,16 +718,16 @@ function GKP.OnFrameCreate()
 			end
 		end
 	end
-	-- ÅÅĞò3
+	-- æ’åº3
 	local page = this:Lookup("PageSet_Menu/Page_GKP_Buff")
 	local t = {
 		{"#",false},
-		{"dwForceID","ÍÅ¶Ó³ÉÔ±"},
-		{"nScore1","ÔöÒæÎïÆ·"},
-		{"nScore2","ÔöÒæĞ§¹û"},
-		{"nEquipScore","×°±¸·Ö"},
-		{"bFightState","Õ½¶·Çé¿ö"},
-		{false,"¸üĞÂÊ±¼ä"}
+		{"dwForceID",_L["Team Members"]},
+		{"nScore1",_L["Item Buff"]},
+		{"nScore2",_L["Team Buff"]},
+		{"nEquipScore",_L["Score of the Equiptment"]},
+		{"bFightState",_L["Information on Combat Situation"]},
+		{false,_L["Update time"]}
 	}
 	for k ,v in ipairs(t) do
 		if v[2] then
@@ -736,7 +737,7 @@ function GKP.OnFrameCreate()
 			if v[1] then
 				txt.OnItemLButtonClick = function()
 					local sort = txt.sort or "asc"
-					pcall(_GKP.Draw_GKP_Buff,v,sort)
+					pcall(_GKP.Draw_GKP_Buff,v[1],sort)
 					if sort == "asc" then
 						txt.sort = "desc"
 					else
@@ -766,7 +767,7 @@ function GKP.OnFrameCreate()
 	loot:SetAbsPos((fx-w)/2,(fy-h)/2)
 end
 ---------------------------------------------------------------------->
--- ºôÎüº¯Êı
+-- å‘¼å¸å‡½æ•°
 ----------------------------------------------------------------------<
 function GKP.OnFrameBreathe()
 	-- run delay calls
@@ -783,55 +784,55 @@ function GKP.OnFrameBreathe()
 	end
 end
 ---------------------------------------------------------------------->
--- »ñÈ¡ÉèÖÃ²Ëµ¥
+-- è·å–è®¾ç½®èœå•
 ----------------------------------------------------------------------<
 _GKP.GetSettingMenu = function()
 	local menu = {}
 	table.insert(menu,{ szOption = "GKP " .. _GKP.szVersion,bDisable = true})
 	table.insert(menu,{ bDevide = true })
-	table.insert(menu,{ szOption = "Æ«ºÃÉèÖÃ",bDisable = true})
-	table.insert(menu,{ szOption = "ÏÔÊ¾¼ÇÂ¼Îª0½ğµÄÌõÄ¿", bCheck = true , bChecked = GKP.Config.bDisplayEmptyRecords,fnAction = function()
+	table.insert(menu,{ szOption = _L["Preference Setting"],bDisable = true})
+	table.insert(menu,{ szOption = _L["Clause with 0 Gold as Record"], bCheck = true , bChecked = GKP.Config.bDisplayEmptyRecords,fnAction = function()
 		GKP.Config.bDisplayEmptyRecords = not GKP.Config.bDisplayEmptyRecords
 		pcall(_GKP.Draw_GKP_Record)
 	end })	
-	table.insert(menu,{ szOption = "×Ô¶¯Ìî³äÓÒ¼ü·¢²¼Ê±µÄ½ğÇ®", bCheck = true , bChecked = GKP.Config.bAutoSetMoney,fnAction = function()
+	table.insert(menu,{ szOption = _L["Auto Fill Money by Clicking Right Button"], bCheck = true , bChecked = GKP.Config.bAutoSetMoney,fnAction = function()
 		GKP.Config.bAutoSetMoney = not GKP.Config.bAutoSetMoney
 	end })
-	table.insert(menu,{ szOption = "×Ô¶¯Ìî³ä±ÌçôËéÆ¬ÊıÁ¿Îª¼Û¸ñ", bCheck = true , bChecked = GKP.Config.bAutoBX,fnAction = function()
+	table.insert(menu,{ szOption = _L["Auto Fill the amount of BiXi Fragment as Price"], bCheck = true , bChecked = GKP.Config.bAutoBX,fnAction = function()
 		GKP.Config.bAutoBX = not GKP.Config.bAutoBX
 	end })
-	table.insert(menu,{ szOption = "½øÈë¸±±¾ÌáĞÑÇå¿ÕÊı¾İ", bCheck = true, bChecked = GKP.Config.bAlertMessage,fnAction = function()
+	table.insert(menu,{ szOption = _L["Remind Wipe Data When Enter Dungeon"], bCheck = true, bChecked = GKP.Config.bAlertMessage,fnAction = function()
 		GKP.Config.bAlertMessage = not GKP.Config.bAlertMessage
 	end })
-	table.insert(menu,{ szOption = "×Ô¶¯½ÓÊÕ·ÖÅäÕß·¢³öµÄ¼ÇÂ¼Í¬²½", bCheck = true, bChecked = GKP.Config.bAutoSync,fnAction = function()
+	table.insert(menu,{ szOption = _L["Automatic Reception with Record From Distributor"], bCheck = true, bChecked = GKP.Config.bAutoSync,fnAction = function()
 		GKP.Config.bAutoSync = not GKP.Config.bAutoSync
 	end })
-	table.insert(menu,{ szOption = "µ¯³ö¼ÇÂ¼Ñ¡Ïî",
-		{ szOption = "ÊÇ·ÖÅäÕßµ¯³ö¼ÇÂ¼", bCheck = true, bChecked = GKP.Config.bOn,fnAction = function()
+	table.insert(menu,{ szOption = _L["Popup with Record Options"],
+		{ szOption = _L["Popup Record for Distributor"], bCheck = true, bChecked = GKP.Config.bOn,fnAction = function()
 			GKP.Config.bOn = not GKP.Config.bOn
 		end},
-		{ szOption = "²»ÊÇ·ÖÅäÕßÒ²µ¯³ö¼ÇÂ¼", bCheck = true, bChecked = GKP.Config.bOn2,fnAction = function()
+		{ szOption = _L["Popup Record for Nondistributor"], bCheck = true, bChecked = GKP.Config.bOn2,fnAction = function()
 			GKP.Config.bOn2 = not GKP.Config.bOn2
 		end }
 	})
 	table.insert(menu,{ bDevide = true })
-	table.insert(menu,{ szOption = "½ğÇ®¼ÇÂ¼",bDisable = true})
-	table.insert(menu,{ szOption = "¼ÇÂ¼ÏµÍ³½ğÇ®±ä¶¯", bCheck = true , bChecked = GKP.Config.bMoneySystem,fnAction = function()
+	table.insert(menu,{ szOption = _L["Money Record"],bDisable = true})
+	table.insert(menu,{ szOption = _L["Track Money Trend in the System"], bCheck = true , bChecked = GKP.Config.bMoneySystem,fnAction = function()
 		GKP.Config.bMoneySystem = not GKP.Config.bMoneySystem
 	end })
-	table.insert(menu,{ szOption = "¿ªÆô½ğÇ®±ä¶¯º°»°", bCheck = true , bChecked = GKP.Config.bMoneyTalk,fnAction = function()
+	table.insert(menu,{ szOption = _L["Enable Money Trend"], bCheck = true , bChecked = GKP.Config.bMoneyTalk,fnAction = function()
 		GKP.Config.bMoneyTalk = not GKP.Config.bMoneyTalk
 	end })
 	table.insert(menu,{ bDevide = true})
-	table.insert(menu,{ szOption = "ÍÅ¶Ó¸Å¿ö",bDisable = true})
-	table.insert(menu,{ szOption = "ÍÅ¶Ó¸Å¿öÏÔÊ¾×°±¸·Ö", bCheck = true, bChecked = GKP.Config.bCheckScore,fnAction = function()
+	table.insert(menu,{ szOption = _L["Team Profile"],bDisable = true})
+	table.insert(menu,{ szOption = _L["Team Profile on Equipment Score"], bCheck = true, bChecked = GKP.Config.bCheckScore,fnAction = function()
 		GKP.Config.bCheckScore = not GKP.Config.bCheckScore
 	end })
-	table.insert(menu,{ szOption = "ÊµÊ±²¥±¨ÖØÉËÌáÊ¾", bCheck = true, bChecked = GKP.Config.bDeathWarn,fnAction = function()
+	table.insert(menu,{ szOption = _L["Injuries tips"], bCheck = true, bChecked = GKP.Config.bDeathWarn,fnAction = function()
 		GKP.Config.bDeathWarn = not GKP.Config.bDeathWarn
 	end })
 	table.insert(menu,{ bDevide = true })
-	table.insert(menu,{ szOption = "Ô¤Éè·½°¸ĞŞ¸Ä", bDisable = true})
+	table.insert(menu,{ szOption = _L["Preset Modify Protocols"], bDisable = true})
 	table.insert(menu,_GKP.GetSubsidiesMenu())
 	table.insert(menu,_GKP.GetSchemeMenu())
 	table.insert(menu,{ bDevide = true})
@@ -839,36 +840,36 @@ _GKP.GetSettingMenu = function()
 		if IsAltKeyDown() and IsCtrlKeyDown() then
 			return ReloadUIAddon()
 		end
-		GKP.Confirm("¾¯¸æ£º¿ªÆôµ÷ÊÔÄ£Ê½½«»áÊ¹²å¼şÎŞÊÓÈ¨ÏŞ¹æ¶¨£¬Ô½È¨ÏÔÊ¾²»¿ÉÖ´ĞĞµÄ²Ù×÷£¬µ«ÕâĞ©²¢²»ÄÜÕæÕıµÄ±»·şÎñÆ÷½ÓÊÜ£¬·Ç¿ª·¢ÕßÇë²»Òª¹´Ñ¡£¬±ÜÃâÔì³ÉÎó½â£¬ÇëÎğÔÚ¿ªÍÅÊ±³¢ÊÔ£¬¿ÉÄÜÔì³É¼ÇÂ¼»ìÂÒµÈÎÊÌâ¡£",function()
+		GKP.Confirm(_L["Warning: plugin will ignore the authority when the debugging mode is on, showing action can not be operate when cross the authorit, but none of this coud be accept by the server,do not select if you are not the developer, avoid making misunderstanding, please do not try it when set up a team, this may creat problem like messing up the record."],function()
 			GKP.Config.bDebug = not GKP.Config.bDebug
 		end)
 	end })
 	if GKP.Config.bDebug then
-		table.insert(menu,{ szOption = "ÎïÆ·±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Object List"],fnAction = function()
 			Output(_GKP.GKP_Record)
 		end })
-		table.insert(menu,{ szOption = "½ğÇ®±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Money List"],fnAction = function()
 			Output(_GKP.GKP_Account)
 		end })
-		table.insert(menu,{ szOption = "ÅäÖÃ±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Configuration List"],fnAction = function()
 			Output(_GKP.Config)
 		end })
-		table.insert(menu,{ szOption = "¼ÇÒä±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Memory List"],fnAction = function()
 			Output(_GKP.tDistributeRecords)
 		end })
-		table.insert(menu,{ szOption = "´ı¼ÇÕË±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Account Wait for Record"],fnAction = function()
 			Output(_GKP.tDistribute)
 		end })
-		table.insert(menu,{ szOption = "·¢²¼Ê±½ğÇ®±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Mony List When Release"],fnAction = function()
 			Output(_GKP.tLootListMoney)
 		end })
-		table.insert(menu,{ szOption = "µ±Ç°Ê°È¡±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Current Pick up List"],fnAction = function()
 			Output(_GKP.aDistributeList)
 		end })
-		table.insert(menu,{ szOption = "¸±±¾±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Dungeon List"],fnAction = function()
 			Output(_GKP.tDungeonList)
 		end })
-		table.insert(menu,{ szOption = "´ı²é¿´×°±¸±í",fnAction = function()
+		table.insert(menu,{ szOption = _L["Equipment List Wait for Check"],fnAction = function()
 			Output(_GKP.tViewInvite)
 		end })
 	end
@@ -876,15 +877,15 @@ _GKP.GetSettingMenu = function()
 	return menu
 end
 ---------------------------------------------------------------------->
--- »ñÈ¡²¹Ìù·½°¸²Ëµ¥
+-- è·å–è¡¥è´´æ–¹æ¡ˆèœå•
 ----------------------------------------------------------------------<
 _GKP.GetSubsidiesMenu = function()
-	local menu = { szOption = "±à¼­²¹Ìù·½°¸" , rgb = {255,0,0} }
+	local menu = { szOption = _L["Edit Allowance Protocols"] , rgb = {255,0,0} }
 	table.insert(menu,{
-		szOption = "Ìí¼ÓĞÂ·½°¸",
+		szOption = _L["Add New Protocols"],
 		rgb = {255,255,0},
 		fnAction = function()
-			GetUserInput("ĞÂ·½°¸ ¸ñÊ½£º·½°¸Ãû,½ğÇ®",function(txt)
+			GetUserInput(_L["New Protocol  Format: Protocol's Name, Money"],function(txt)
 				local t = GKP.Split(txt,",")
 				table.insert(_GKP.Config.Subsidies,{t[1],tonumber(t[2]) or "",true})
 				pcall(_GKP.SaveConfig)
@@ -906,15 +907,15 @@ _GKP.GetSubsidiesMenu = function()
 	return menu
 end
 ---------------------------------------------------------------------->
--- »ñÈ¡ÅÄÂô·½°¸²Ëµ¥
+-- è·å–æ‹å–æ–¹æ¡ˆèœå•
 ----------------------------------------------------------------------<
 _GKP.GetSchemeMenu = function()
-	local menu = { szOption = "±à¼­ÅÄÂô·½°¸" , rgb = {255,0,0} }
+	local menu = { szOption = _L["Edit Auction Protocols"] , rgb = {255,0,0} }
 	table.insert(menu,{
-		szOption = "±à¼­ËùÓĞ·½°¸",
+		szOption = _L["Edit All Protocols"],
 		rgb = {255,255,0},
 		fnAction = function()
-			GetUserInput("ĞÂ·½°¸ ¸ñÊ½£º½ğÇ®,½ğÇ®,½ğÇ®,...",function(txt)
+			GetUserInput(_L["New Protocol Format: Money, Money, Money"],function(txt)
 				local t = GKP.Split(txt,",")
 				_GKP.Config.Scheme = {}
 				for k,v in ipairs(t) do
@@ -940,7 +941,7 @@ _GKP.GetSchemeMenu = function()
 	return menu
 end
 ---------------------------------------------------------------------->
--- »ñÈ¡Íæ¼ÒÉíÉÏBuffÁĞ±í
+-- è·å–ç©å®¶èº«ä¸ŠBuffåˆ—è¡¨
 ----------------------------------------------------------------------<
 _GKP.GetBuffList = function(obj)
 	local aBuffTable = {}
@@ -954,10 +955,10 @@ _GKP.GetBuffList = function(obj)
 	return aBuffTable
 end
 ---------------------------------------------------------------------->
--- »æÖÆÍÅ¶Ó¸Å¿ö
+-- ç»˜åˆ¶å›¢é˜Ÿæ¦‚å†µ
 ----------------------------------------------------------------------<
 _GKP.Draw_GKP_Buff = function(key,sort)
-	GKP.DelayCall(3000,function() -- ÎŞËùÎ½ÁË ¹Ø±Õ´°¿Ú kill
+	GKP.DelayCall(3000,function() -- æ— æ‰€è°“äº† å…³é—­çª—å£ kill
 		if _GKP.frame:IsVisible() then
 			local res , err = pcall(_GKP.Draw_GKP_Buff)
 			if err then
@@ -978,9 +979,9 @@ _GKP.Draw_GKP_Buff = function(key,sort)
 	local TeamMemberList = team.GetTeamMemberList()
 	local tType = { [24] = true ,[17] = true,[18] = true,[19] = true,[20] = true }
 	local tType2 = { [362] = true, [673] = true,[112] = true ,[382] = true , [3219] = true , [2837] = true }
-	local tNameEx = {
-		["Òş¾Ó"] = 3694590,
-		["Ó£Ä«"] = 1301156,
+	local tNameEx = { -- utf8 not supported
+		-- ["éšå±…"] = 3694590,
+		-- ["æ¨±å¢¨"] = 1301156,
 	}
 	local tab = {}
 	for k,v in ipairs(TeamMemberList) do
@@ -1054,7 +1055,7 @@ _GKP.Draw_GKP_Buff = function(key,sort)
 		item:Lookup("Image_NameIcon"):FromIconID(Table_GetSkillIconID(v.dwMountKungfuID))
 		item:Lookup("Text_Name"):SetText(v.szName)
 		item:Lookup("Text_Name"):SetFontColor(GKP.GetForceCol(v.dwForceID))
-		local ex,r,g,b = "²»ÔÚ·¶Î§ÄÚ",255,255,255
+		local ex,r,g,b = _L["Not in the Scope"],255,255,255
 		if tNameEx[v.szName] and tNameEx[v.szName] == v.dwID then
 			player = nil
 			ex,r,g,b = "Access denied",255,128,0
@@ -1111,16 +1112,16 @@ _GKP.Draw_GKP_Buff = function(key,sort)
 			-- wnd:Lookup("","Handle_Box2"):SetRelPos(350 + (150 - #v.Box2 * 28) / 2 ,0)
 			-- wnd:Lookup("",""):FormatAllItemPos()
 			if v.bFightState == 1 then
-				item:Lookup("Text_Fight"):SetText("Õ½¶·ÖĞ")
+				item:Lookup("Text_Fight"):SetText(_L["Combat"])
 				item:Lookup("Text_Fight"):SetFontColor(255,0,0)
 			else
-				item:Lookup("Text_Fight"):SetText("²»ÔÚÕ½¶·ÖĞ")
+				item:Lookup("Text_Fight"):SetText(_L["Nocombat"])
 				item:Lookup("Text_Fight"):SetFontColor(0,255,0)
 			end
 			if GKP.Config.bCheckScore then
 				item:Lookup("Text_Score"):SetText(v.nEquipScore)
 			else
-				item:Lookup("Text_Score"):SetText("Î´¿ªÆô")
+				item:Lookup("Text_Score"):SetText(_L["Unopened"])
 			end			
 		else
 			for kk,vv in ipairs({"Text_Box1","Text_Box2","Text_Score","Text_Fight"}) do
@@ -1144,18 +1145,19 @@ _GKP.Draw_GKP_Buff = function(key,sort)
 		item:Lookup("Text_Name").OnItemMouseEnter = function()
 			local szIcon,nFrame = GetForceImage(v.dwForceID)
 			local r,g,b = GKP.GetForceCol(v.dwForceID)
-			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szName .. "£º\n",136,r,g,b)
-			szXml = szXml .. GetFormatText("---------- ÖØÉË¼ÇÂ¼ÈçÏÂ ----------\n\n",136,255,255,255)
+			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szName .. "ï¼š\n",136,r,g,b)
+			szXml = szXml .. GetFormatText(_L["Serious Injured Record as Shown Below\n\n"],136,255,255,255)
 			if not _GKP.DeathWarn.tDeath[v.dwID] or #_GKP.DeathWarn.tDeath[v.dwID] == 0 then
-				szXml = szXml ..GetFormatText("Ã»ÓĞÈÎºÎ¼ÇÂ¼\n",136,255,255,0)
+				szXml = szXml ..GetFormatText(_L["No Record"],136,255,255,0)
 			else
 				for i = #_GKP.DeathWarn.tDeath[v.dwID] , 1 , -1 do
 					local a = _GKP.DeathWarn.tDeath[v.dwID][i]
 					szXml = szXml ..GetFormatText(GKP.GetTimeString(a.time,true) .. " ",136,255,255,0)
 					szXml = szXml ..GetFormatText(a.szCaster,136,255,128,0)
-					szXml = szXml ..GetFormatText(" µÄ ",136,255,255,0)
+					szXml = szXml ..GetFormatText(" <",136,255,255,0)
 					szXml = szXml ..GetFormatText(a.szSkillName,136,255,128,0)
-					szXml = szXml ..GetFormatText(" Ôì³ÉÁË ",136,255,255,0)
+					szXml = szXml ..GetFormatText("> ",136,255,255,0)
+					szXml = szXml ..GetFormatText(_L["Cause"],136,255,255,0)
 					szXml = szXml ..GetFormatText(a.szValue .. "\n",136,255,128,0)
 				end
 			end
@@ -1172,7 +1174,7 @@ _GKP.Draw_GKP_Buff = function(key,sort)
 end
 
 ---------------------------------------------------------------------->
--- ²é¿´×°±¸»Øµ÷ÊÂ¼ş
+-- æŸ¥çœ‹è£…å¤‡å›è°ƒäº‹ä»¶
 ----------------------------------------------------------------------<
 RegisterEvent("PEEK_OTHER_PLAYER", function()
 	if arg0 ~= 1 then return end
@@ -1187,7 +1189,7 @@ RegisterEvent("PEEK_OTHER_PLAYER", function()
 	end
 end)
 ---------------------------------------------------------------------->
--- »æÖÆÎïÆ·¼ÇÂ¼
+-- ç»˜åˆ¶ç‰©å“è®°å½•
 ----------------------------------------------------------------------<
 _GKP.Draw_GKP_Record = function(key,sort)
 	local key = key or _GKP.GKP_Record_Container.key or "nTime"
@@ -1308,8 +1310,8 @@ _GKP.Draw_GKP_Record = function(key,sort)
 			item:Lookup("Text_Name").OnItemMouseEnter = function()
 				local szIcon,nFrame = GetForceImage(v.dwForceID)
 				local r,g,b = GKP.GetForceCol(v.dwForceID)
-				local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. "£º\n",136,r,g,b)
-				szXml = szXml .. GetFormatText("---------- Í³¼ÆĞÅÏ¢ÈçÏÂ ----------\n\n",136,255,255,255)
+				local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. "ï¼š\n",136,r,g,b)
+				szXml = szXml .. GetFormatText(_L["System Information as Shown Below\n\n"],136,255,255,255)
 				local nNum,nNum1,nNum2 = 0,0,0
 				for kk,vv in ipairs(GKP("GKP_Record")) do
 					if vv.szPlayer == v.szPlayer and not vv.bDelete then
@@ -1321,9 +1323,9 @@ _GKP.Draw_GKP_Record = function(key,sort)
 					end
 				end
 				local r,g,b = GKP.GetMoneyCol(nNum)
-				szXml = szXml .. GetFormatText("×Ü¼ÆÏû·Ñ£º",136,255,128,0) .. GetFormatText(nNum .."½ğ¡£\n",136,r,g,b)
+				szXml = szXml .. GetFormatText(_L["Total Cosumption:"],136,255,128,0) .. GetFormatText(nNum .._L["Gold.\n"],136,r,g,b)
 				local r,g,b = GKP.GetMoneyCol(nNum1)
-				szXml = szXml .. GetFormatText("×Ü¼Æ²¹Ìù£º",136,255,128,0) .. GetFormatText(nNum1 .."½ğ¡£\n",136,r,g,b)
+				szXml = szXml .. GetFormatText(_L["Total Allowance:"],136,255,128,0) .. GetFormatText(nNum1 .._L["Gold.\n"],136,r,g,b)
 				
 				for kk,vv in ipairs(GKP("GKP_Account")) do
 					if vv.szPlayer == v.szPlayer and not vv.bDelete and vv.nGold > 0 then
@@ -1331,13 +1333,13 @@ _GKP.Draw_GKP_Record = function(key,sort)
 					end
 				end
 				local r,g,b = GKP.GetMoneyCol(nNum2)
-				szXml = szXml .. GetFormatText("×Ü¼Æ¸¶¿î£º",136,255,128,0) .. GetFormatText(nNum2 .."½ğ¡£\n",136,r,g,b)
+				szXml = szXml .. GetFormatText(_L["Total Payment:"],136,255,128,0) .. GetFormatText(nNum2 .._L["Gold.\n"],136,r,g,b)
 				local nNum3 = nNum+nNum1-nNum2
 				if nNum3 < 0 then
 					nNum3 = 0
 				end
 				local r,g,b = GKP.GetMoneyCol(nNum3)			
-				szXml = szXml .. GetFormatText("Ç·Õ®½ğ¶î£º",136,255,128,0) .. GetFormatText(nNum3 .."½ğ¡£\n",136,r,g,b)
+				szXml = szXml .. GetFormatText(_L["Money on Debt:"],136,255,128,0) .. GetFormatText(nNum3 .._L["Gold.\n"],136,r,g,b)
 				
 				local x, y = item:Lookup("Text_No"):GetAbsPos()
 				local w, h = item:Lookup("Text_No"):GetSize()
@@ -1356,20 +1358,20 @@ _GKP.Draw_GKP_Record = function(key,sort)
 	
 	_GKP.GKP_Record_Container:FormatAllContentPos()
 	local txt = Station.Lookup("Normal/GKP/PageSet_Menu/Page_GKP_Record"):Lookup("","Text_GKP_RecordSettlement")
-	txt:SetText(string.format("Í³¼Æ£ºÊµ¼Ê¹¤×Ê £½ %d½ğ£¨ÅÄÂôËùµÃ£º%d½ğ £« ¶îÍâ²¹Ìù£º%d½ğ£©%dÌõ¼ÇÂ¼±»É¾³ı",a+b,a,b,c))
+	txt:SetText(_L("Statistic: real salary = %d Gold(By Auction: %d Gold + Extra Allowance: %d Gold) %d record has been deleted.",a+b,a,b,c))
 	txt:SetFontColor(255,255,0)
 end
 ---------------------------------------------------------------------->
--- ºÍĞ³
+-- å’Œè°
 ----------------------------------------------------------------------<
 _GKP.GKP_Bidding = function()
 	local team = GetClientTeam()
 	if not GKP.IsDistributer() then
-		return GKP.Alert("Äã²»ÊÇ·ÖÅäÕß¡£")
+		return GKP.Alert(_L["You are not the distrubutor."])
 	end	
 	local nGold = _GKP.GetRecordSum(true)
 	if nGold <= 0 then
-		return GKP.Alert("ÅÄÂô½ğ¶î<=0¡£")
+		return GKP.Alert(_L["Auction Money <=0."])
 	end
 	team.SetTeamLootMode(PARTY_LOOT_MODE.BIDDING)
 	local GoldTeam = Wnd.OpenWindow("GoldTeam")
@@ -1389,11 +1391,11 @@ _GKP.GKP_Bidding = function()
 	end	
 end
 ---------------------------------------------------------------------->
--- Í¬²½Êı¾İ
+-- åŒæ­¥æ•°æ®
 ----------------------------------------------------------------------<
 _GKP.GKP_Sync = function()
 	local me = GetClientPlayer()
-	if not me.IsInParty() then return GKP.Alert("Äã²»ÔÚ¶ÓÎéÖĞ¡£") end
+	if not me.IsInParty() then return GKP.Alert(_L["You are not in the team."]) end
 	local TeamMemberList = GetClientTeam().GetTeamMemberList()
 	local tTeam,menu = {},{}
 	for _,v in ipairs(TeamMemberList) do
@@ -1401,7 +1403,7 @@ _GKP.GKP_Sync = function()
 		table.insert(tTeam,{ szName = player.szName ,dwForce = player.dwForceID ,bIsOnLine = player.bIsOnLine})
 	end
 	table.sort(tTeam,function(a,b) return a.dwForce < b.dwForce end)
-	table.insert(menu,{szOption = "ÇëÑ¡ÔñÏòË­»ñÈ¡¼ÇÂ¼",	bDisable = true	})
+	table.insert(menu,{szOption = _L["Please select which will be the one you are going to ask record for."],bDisable = true	})
 	table.insert(menu,{bDevide = true})
 	for _,v in ipairs(tTeam) do
 		local szIcon,nFrame = GetForceImage(v.dwForce)
@@ -1413,9 +1415,9 @@ _GKP.GKP_Sync = function()
 			nFrame = nFrame ,
 			rgb = {GKP.GetForceCol(v.dwForce)},
 			fnAction = function()
-				GKP.Confirm("ÊÇ·ñ½«µ±Ç°µÄ¼ÇÂ¼Ìæ»»ÎªÍ¬²½¶ÔÏóµÄ¼ÇÂ¼£¿\nÇë×¢Òâ£¬Õâ½«Ê§È¥Äãµ±Ç°¼ÇÂ¼µÄĞÅÏ¢¡£\n",function()
-					GKP.Alert("ÕıÔÚÇëÇóÍ¬²½ĞÅÏ¢.... \nÈç¹û³¤Ê±¼äÃ»ÓĞ·´Ó¦¿ÉÄÜÊÇ¶Ô·½Ã»ÓĞÊ¹ÓÃGKP²å¼ş»òÎ´ÏìÓ¦¡£")
-					GKP.BgTalk("GKP_Sync",v.szName) -- ÇëÇóÍ¬²½ĞÅÏ¢
+				GKP.Confirm(_L["Wheater replace the current record with the synchronization target's record?\n Please notice, this means you are going to lose the information of current record."],function()
+					GKP.Alert(_L["Asking for the sychoronization informationâ€¦\n If no response in longtime, it may because the opposite side are not using GKP plugin or not responding."])
+					GKP.BgTalk("GKP_Sync",v.szName) -- è¯·æ±‚åŒæ­¥ä¿¡æ¯
 				end)
 			end
 		})
@@ -1444,12 +1446,12 @@ _GKP.OnMsg = function()
 		
 		if t[2].text == "GKP_Sync_Start" and t[3].text == me.szName then
 			_GKP.bSync = true
-			GKP.Alert("Í¬²½¿ªÊ¼....")
+			GKP.Alert(_L["Start Sychoronizing..."])
 		end
 		if t[2].text == "GKP_Sync_Content" and t[3].text == me.szName and _GKP.bSync then
 			table.insert(_GKP.tSyncQueue,t[4].text)
 			if #_GKP.tSyncQueue % 10 == 0 then
-				GKP.Alert("Í¬²½Êı¾İÖĞÇëÉÔµÈ ÒÑ¶ÁÈ¡£º" .. #_GKP.tSyncQueue)
+				GKP.Alert(_L("Sychoronizing data please wait  %d loaded.",#_GKP.tSyncQueue))
 			end
 		end
 		
@@ -1460,12 +1462,12 @@ _GKP.OnMsg = function()
 			end
 			_GKP.tSyncQueue = {}
 			_GKP.bSync = false
-			GKP.Alert("Í¬²½ÒÑÍê³É")
+			GKP.Alert(_L["Sychoronization Complete"])
 			local tData,err = GKP.JsonDecode(GKP.AscIIDecode(str))
 			if err then
-				return GKP.Sysmsg("Êı¾İ¹²ÏíÒì³££¬ÇëÁªÏµ×÷Õß·´À¡£¬Î¢²©ID£ºÃÈ¶¯Ğ¡»Æ¼¦¡£")
+				return GKP.Sysmsg(_L["Abnormal with Data Sharing, Please contact and make feed back with the writer."])
 			end
-			GKP.Confirm(string.format("Êı¾İÍ¬²½Íê±Ï£¬Äã»¹ÓĞ×îºóÒ»´Î»ú»áÈ·ÈÏÊÇ·ñ¸²¸ÇÏÖÓĞÊı¾İ£¿\nÅÄÍÅÊı¾İ£º%s\n½»Ò×Êı¾İ£º%s",#tData.GKP_Record,#tData.GKP_Account) ,function()
+			GKP.Confirm(_L("Data Sharing Finished, you have one last chance to confirm wheather cover the current data or not? \n data of team bidding: %s\n transation data: %s",#tData.GKP_Record,#tData.GKP_Account) ,function()
 				_GKP.GKP_Record = tData.GKP_Record
 				_GKP.GKP_Account = tData.GKP_Account
 				pcall(_GKP.Draw_GKP_Record)
@@ -1477,7 +1479,7 @@ _GKP.OnMsg = function()
 		if (t[2].text == "del" or t[2].text == "edit" or t[2].text == "add") and GKP.Config.bAutoSync and arg3 ~= me.szName then
 			local tData,err = GKP.JsonDecode(GKP.AscIIDecode(t[3].text))
 			if err then
-				return GKP.Sysmsg("Êı¾İ¹²ÏíÒì³££¬ÇëÁªÏµ×÷Õß·´À¡£¬Î¢²©ID£ºÃÈ¶¯Ğ¡»Æ¼¦¡£")
+				return GKP.Sysmsg(_L["Abnormal with Data Sharing, Please contact and make feed back with the writer."])
 			end
 			tData.bSync = true
 			if t[2].text == "add" then
@@ -1499,17 +1501,17 @@ end
 RegisterEvent("ON_BG_CHANNEL_MSG",_GKP.OnMsg)
 
 ---------------------------------------------------------------------->
--- »Ö¸´¼ÇÂ¼°´Å¥
+-- æ¢å¤è®°å½•æŒ‰é’®
 ----------------------------------------------------------------------<
 _GKP.GKP_Recovery = function()
 	local me = GetClientPlayer()
 	_GKP.szName = _GKP.szName or me.szName
 	local menu = {}	
 	table.insert(menu,{
-		szOption = string.format("¶ÁÈ¡Êı¾İµÄ½ÇÉ«Ãû£º%s£¨µã»÷ĞŞ¸Ä£©",_GKP.szName),
+		szOption = _L("Loading Data of the Character's name: %s (edit by clicking)",_GKP.szName),
 		rgb = {255,255,0},
 		fnAction = function()
-			GetUserInput("ĞŞ¸Äµ¼Èë½ÇÉ«Ãû",function(szText)
+			GetUserInput(_L["Modify to Lead the Character's name"],function(szText)
 				_GKP.szName = szText
 			end)
 		end
@@ -1521,9 +1523,9 @@ _GKP.GKP_Recovery = function()
 			szOption = FormatTime("%Y-%m-%d",nTime) .. ".gkp",
 			bDisable = not IsFileExist(szPath .. ".jx3dat"),
 			fnAction = function()
-				GKP.Confirm("ÄãÈ·¶¨¸²¸Çµ±Ç°ÒÑÓĞµÄ¼ÇÂ¼»Ö¸´ÉÏÒ»´Î¼ÇÂ¼µÄÊı¾İÂğ£¿",function()
+				GKP.Confirm(_L["Are you sure to cover the current information with the last record data?"],function()
 					_GKP.GKP_LoadData(_GKP.szName .. "/" .. FormatTime("%Y-%m-%d",nTime))
-					GKP.Alert("¼ÇÂ¼»Ö¸´³É¹¦¡£")
+					GKP.Alert(_L["Reocrd Recovered."])
 				end)
 			end,
 		})
@@ -1531,28 +1533,28 @@ _GKP.GKP_Recovery = function()
 	PopupMenu(menu)
 end
 ---------------------------------------------------------------------->
--- Çå¿ÕÊı¾İ
+-- æ¸…ç©ºæ•°æ®
 ----------------------------------------------------------------------<
 _GKP.GKP_Clear = function()
-	GKP.Confirm("È·¶¨Çå¿ÕËùÓĞ¼ÇÂ¼Âğ£¿",function()
+	GKP.Confirm(_L["Are you sure to wipe all of the records?"],function()
 		_GKP.GKP_Record = {}
 		_GKP.GKP_Account = {}
 		pcall(_GKP.Draw_GKP_Record)
 		pcall(_GKP.Draw_GKP_Account)
 		_GKP.nNowMoney = GetClientPlayer().GetMoney().nGold
 		_GKP.tDistributeRecords = {}
-		GKP.Alert("ËùÓĞ¼ÇÂ¼³É¹¦Çå¿Õ¡£")
+		GKP.Alert(_L["Recods are wiped"])
 	end)
 end
 ---------------------------------------------------------------------->
--- Ç··ÑÇé¿ö
+-- æ¬ è´¹æƒ…å†µ
 ----------------------------------------------------------------------<
 _GKP.GKP_OweList = function()
 	local me = GetClientPlayer()
-	if not me.IsInParty() and not GKP.Config.bDebug then return GKP.Alert("Äã²»ÔÚ¶ÓÎéÖĞ¡£") end
+	if not me.IsInParty() and not GKP.Config.bDebug then return GKP.Alert(_L["You are not in the team."]) end
 	local tMember = {}
 	if IsEmpty(GKP("GKP_Record")) then
-		return GKP.Alert("Ã»ÓĞ¼ÇÂ¼")
+		return GKP.Alert(_L["No Record"])
 	end
 	
 	for k,v in ipairs(GKP("GKP_Record")) do
@@ -1574,7 +1576,7 @@ _GKP.GKP_OweList = function()
 			end
 		end
 	end
-	-- Ç·ÕË
+	-- æ¬ è´¦
 	local tMember2 = {}
 	for k,v in pairs(tMember) do
 		if v ~= 0 then
@@ -1583,18 +1585,18 @@ _GKP.GKP_OweList = function()
 	end
 	table.sort(tMember2,function(a,b) return a.nGold < b.nGold end)
 	local nChannel, szTarName = EditBox_GetChannel()
-	GKP.Talk("------ Ç·Õ®Çé¿ö ------",szTarName)
+	GKP.Talk(_L["Information on Debt"],szTarName)
 	for k,v in pairs(tMember2) do
 		if v.nGold < 0 then
-			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "£º" .. v.nGold .. "½ğ¡£"}},szTarName)
+			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "ï¼š" .. v.nGold .. _L["Gold."]}},szTarName)
 		else
-			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "£º+" .. v.nGold .. "½ğ¡£"}},szTarName)
+			GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "ï¼š+" .. v.nGold .. _L["Gold."]}},szTarName)
 		end
 	end
 	local nGold,nGold2 = 0,0
 	for _,v in ipairs(GKP("GKP_Account")) do
 		if not v.bDelete then
-			if v.szPlayer and v.szPlayer ~= "System" then -- ±ØĞëÒªÓĞ½»Ò×¶ÔÏó
+			if v.szPlayer and v.szPlayer ~= "System" then -- å¿…é¡»è¦æœ‰äº¤æ˜“å¯¹è±¡
 				if tonumber(v.nGold) > 0 then
 					nGold = nGold + v.nGold
 				else
@@ -1604,14 +1606,14 @@ _GKP.GKP_OweList = function()
 		end
 	end
 	if nGold ~= 0 then
-		GKP.Talk("ÊÕµ½£º" .. nGold .. "½ğ",szTarName)
+		GKP.Talk(_L("Received: %d Gold.",nGold),szTarName)
 	end
 	if nGold2 ~= 0 then
-		GKP.Talk("Ö§³ö£º" .. nGold2 * -1 .. "½ğ",szTarName)
+		GKP.Talk(_L("Toal Auction: %d Gold.",nGold),szTarName)
 	end
 end
 ---------------------------------------------------------------------->
--- »ñÈ¡¹¤×Ê×Ü¶î
+-- è·å–å·¥èµ„æ€»é¢
 ----------------------------------------------------------------------<
 _GKP.GetRecordSum = function(bAccurate)
 	if IsEmpty(GKP("GKP_Record")) then
@@ -1634,15 +1636,15 @@ _GKP.GetRecordSum = function(bAccurate)
 	end
 end
 ---------------------------------------------------------------------->
--- Ïû·ÑÇé¿ö°´Å¥
+-- æ¶ˆè´¹æƒ…å†µæŒ‰é’®
 ----------------------------------------------------------------------<
 _GKP.GKP_SpendingList = function()
 	local me = GetClientPlayer()
-	if not me.IsInParty() and not GKP.Config.bDebug then return GKP.Alert("Äã²»ÔÚ¶ÓÎéÖĞ¡£") end
+	if not me.IsInParty() and not GKP.Config.bDebug then return GKP.Alert(_L["You are not in the team."]) end
 	local tMember = {}
 	
 	if IsEmpty(GKP("GKP_Record")) then
-		return GKP.Alert("Ã»ÓĞ¼ÇÂ¼")
+		return GKP.Alert(_L["No Record"])
 	end
 	
 	for k,v in ipairs(GKP("GKP_Record")) do
@@ -1656,44 +1658,43 @@ _GKP.GKP_SpendingList = function()
 		end
 	end
 	local nChannel, szTarName = EditBox_GetChannel()
-	GKP.Talk("------ Ïû·ÑÇé¿ö ------",szTarName)
+	GKP.Talk(_L["--- Consumption ---"],szTarName)
 	local sort = {}
 	for k,v in pairs(tMember) do
 		if v > 0 then
 			table.insert(sort,{szName = k,nGold = v})
 		end
 	end
+
 	table.sort(sort,function(a,b) return a.nGold < b.nGold end)
 	for k,v in ipairs(sort) do
-		GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "£º" .. v.nGold .. "½ğ¡£"}},szTarName)
+		GKP.Talk({{type = "name" , name = v.szName , text =""},{type = "text" , text = "ï¼š" .. v.nGold .. _L["Gold."]}},szTarName)
 	end
-	GKP.Talk("×Ü¼ÆÅÄÂô£º" .. _GKP.GetRecordSum() .. "½ğ¡£",szTarName)
+	GKP.Talk(_L["Toal Auction:"] .. _GKP.GetRecordSum() .. _L["Gold."],szTarName)
 end
 ---------------------------------------------------------------------->
--- ½áËã¹¤×Ê°´Å¥
+-- ç»“ç®—å·¥èµ„æŒ‰é’®
 ----------------------------------------------------------------------<
 _GKP.GKP_Calculation = function()
 	local me = GetClientPlayer()
-	if not me.IsInParty() and not GKP.Config.bDebug then return GKP.Alert("Äã²»ÔÚ¶ÓÎéÖĞ¡£") end
+	if not me.IsInParty() and not GKP.Config.bDebug then return GKP.Alert(_L["You are not in the team."]) end
 	local team = GetClientTeam()
 	if IsEmpty(GKP("GKP_Record")) then
-		return GKP.Alert("Ã»ÓĞ¼ÇÂ¼")
+		return GKP.Alert(_L["No Record"])
 	end
 	
-	GetUserInput("ÊäÈë½áËãµÄ×ÜÈËÊı",function(num)
+	GetUserInput(_L["Total Amount of People with Output Settle Account"],function(num)
 		if not tonumber(num) then return end
 		local a,b = _GKP.GetRecordSum()
-		-- pcall(_GKP.GKP_SpendingList)
-		-- pcall(_GKP.GKP_OweList)
-		GKP.Talk("------ ¹¤×Ê½áËã ------")
-		GKP.Talk(string.format("¹¤×ÊÍ³¼Æ£ºÊÕÈë %d½ğ¡£",a))
-		GKP.Talk(string.format("¹¤×Ê²¹Ìù£º%d½ğ¡£",b))
-		GKP.Talk(string.format("Êµ¼Ê¹¤×Ê£º%d½ğ¡£",a+b,a,b))
+		GKP.Talk(_L["Salary Settle Account"])
+		GKP.Talk(_L("Salary Statistic: income  %d Gold.",a))
+		GKP.Talk(_L("Salary Allowance: %d Gold.",b))
+		GKP.Talk(_L("Reall Salary: %d Gold.",a+b,a,b))
 		if a+b >= 0 then
-			GKP.Talk(string.format("½áËãÈËÊı£º%d",num))
-			GKP.Talk(string.format("Êµ¼ÊÃ¿ÈË£º%d½ğ¡£",math.floor((a+b)/num)))
+			GKP.Talk(_L("Amount of People with Settle Account: %d",num))
+			GKP.Talk(_L("Actual per person: %d Gold.",math.floor((a+b)/num)))
 		else
-			GKP.Talk("¼ÇÕËµÄÈË¿Ï¶¨ÊÇÖí£¬ÕËÊÇ¸ºµÄ·¢²»³öÇ®ÁË£¡")
+			GKP.Talk(_L["The Account is Negative, no money is coming out!"])
 		end
 	end,nil,nil,nil,team.GetTeamSize())
 end
@@ -1705,7 +1706,7 @@ _GKP.OnOpenDoodad = function(dwID)
 	local d = GetDoodad(dwID)
 	local refresh = false
 	if d then
-		-- money Ê°È¡½ğÇ®
+		-- money æ‹¾å–é‡‘é’±
 		local nM = d.GetLootMoney() or 0
 		if nM > 0 then
 			LootMoney(d.dwID)
@@ -1776,7 +1777,7 @@ _GKP.DrawDistributeList = function(doodad)
 	end
 	if not aPartyMember then
 		_GKP.OnOpenDoodad(_GKP.dwOpenID)
-		return GKP.Sysmsg("³¬³öÏµÍ³Ê°È¡Ê±¼ä£¬Çë³¢ÊÔÖØĞÂ»ñÈ¡£¡")
+		return GKP.Sysmsg(_L["Pick up time limit exceede, pleace try again."])
 	end
 
 	if not GKP.Config.bDebug then
@@ -1827,7 +1828,7 @@ _GKP.DrawDistributeList = function(doodad)
 		if _GKP.tDistributeRecords[szItemName] then
 			box:SetObjectStaring(true)
 		end
-		local _item = { -- ·ÖÅäºó userdata»º´æ
+		local _item = { -- åˆ†é…å userdataç¼“å­˜
 			nVersion = item.nVersion,
 			dwTabType = item.dwTabType,
 			dwIndex = item.dwIndex,
@@ -1842,7 +1843,7 @@ _GKP.DrawDistributeList = function(doodad)
 			table.insert(tMenu,{ szOption = GetItemNameByItem(item) , bDisable = true})
 			table.insert(tMenu,{bDevide = true})
 			table.insert(tMenu,{ 
-				szOption = "Rollµã",
+				szOption = "Rollç‚¹",
 				fnAction = function()
 					if MY_RollMonitor then
 						if MY_RollMonitor.OpenPanel and MY_RollMonitor.Clear then
@@ -1850,7 +1851,7 @@ _GKP.DrawDistributeList = function(doodad)
 							MY_RollMonitor.Clear({echo=false})
 						end
 					end
-					GKP.Talk({GKP.GetFormatLink(_item),{type = "text" ,text =" ÒªµÄRollµã¡£"}})
+					GKP.Talk({GKP.GetFormatLink(_item),{type = "text" ,text =_L["Roll the dice if you wang"]}})
 				end
 			})
 			table.insert(tMenu,{bDevide = true})
@@ -1860,7 +1861,7 @@ _GKP.DrawDistributeList = function(doodad)
 						szOption = v[1],
 						fnAction = function()
 							_GKP.tLootListMoney[item.dwID] = v[1]
-							GKP.Talk({GKP.GetFormatLink(_item),{type = "text" ,text = " " .. v[1] .. "½ğ ÆğÅÄ£¬ÒªµÄ³ö¼Û¡£"}})
+							GKP.Talk({GKP.GetFormatLink(_item),{type = "text" ,text = _L("%d Gold Start Bidding, off a price if you want.",v[1] )}})
 						end
 					})
 				end
@@ -1878,10 +1879,10 @@ _GKP.DrawDistributeList = function(doodad)
 			end
 			local me = GetClientPlayer()
 			local nLootMode = team.nLootMode
-			if nLootMode ~= PARTY_LOOT_MODE.DISTRIBUTE and not GKP.Config.bDebug then -- ĞèÒª·ÖÅäÕßÄ£Ê½
+			if nLootMode ~= PARTY_LOOT_MODE.DISTRIBUTE and not GKP.Config.bDebug then -- éœ€è¦åˆ†é…è€…æ¨¡å¼
 				return OutputMessage("MSG_ANNOUNCE_RED", g_tStrings.GOLD_CHANGE_DISTRIBUTE_LOOT)
 			end
-			if not GKP.IsDistributer() and not GKP.Config.bDebug then -- ĞèÒª×Ô¼ºÊÇ·ÖÅäÕß
+			if not GKP.IsDistributer() and not GKP.Config.bDebug then -- éœ€è¦è‡ªå·±æ˜¯åˆ†é…è€…
 				return OutputMessage("MSG_ANNOUNCE_RED",g_tStrings.ERROR_LOOT_DISTRIBUTE)
 			end
 			table.sort(aPartyMember,function(a,b)
@@ -1903,7 +1904,7 @@ _GKP.DrawDistributeList = function(doodad)
 					fnAction = function()
 						if not item.dwID then
 							_GKP.OnOpenDoodad(_GKP.dwOpenID)
-							return GKP.Sysmsg("userdata¹ıÆÚ£¬·ÖÅäÊ§°Ü£¬ÇåÖØĞÂ³¢ÊÔ¡£")
+							return GKP.Sysmsg(_L["Userdata is overdue, distribut failed, please try again."])
 						end
 						if item.nQuality >= 3 then
 							local r,g,b = GKP.GetForceCol(v.dwForceID)
@@ -1934,7 +1935,7 @@ _GKP.DrawDistributeList = function(doodad)
 					end
 				}
 			end
-			-- ÓĞ¼ÇÒäµÄÇé¿öÏÂ append meun
+			-- æœ‰è®°å¿†çš„æƒ…å†µä¸‹ append meun
 			if _GKP.tDistributeRecords[szItemName] then
 				local p
 				for k,v in ipairs(aPartyMember) do
@@ -1943,19 +1944,19 @@ _GKP.DrawDistributeList = function(doodad)
 						break
 					end
 				end
-				if p then  -- Õâ¸öÈË´æÔÚÍÅ¶ÓµÄÇé¿öÏÂ
+				if p then  -- è¿™ä¸ªäººå­˜åœ¨å›¢é˜Ÿçš„æƒ…å†µä¸‹
 					if IsAltKeyDown() then
 						if p.bOnlineFlag then
 							_GKP.DistributeItem(item,p,doodad,true)
 						else
-							GKP.Sysmsg("Ã»ÓĞÊ°È¡¶ÔÏó£¬¿ÉÄÜÊÇµôÏßÁË¡£")
+							GKP.Sysmsg(_L["No Pick up Object, may due to Network off - line"])
 						end
 						return
 					end
 					table.insert(tMenu,fnAction(p,function(this)
 						local x, y = this:GetAbsPos()
 						local w, h = this:GetSize()
-						local szXml = GetFormatText(string.format("ÉÏ´ÎÄãÒÑ¾­°Ñ [%s] ·ÖÅä¸øÁË [%s] £¬ÏÂ´Î¿ÉÒÔÖ±½ÓÔÚÎïÆ·Í¼±êÉÏ°´×¡Alt¿ìËÙ·ÖÅä¸ø [%s] £¬Ò²¿ÉÒÔµã»÷Õâ¸ö²Ëµ¥·ÖÅä¸øTA¡£\n",szItemName,p.szName,p.szName),136,255,255,255)
+						local szXml = GetFormatText(_L("You already distrubute [%s] with [%s], you can press Alt and select the object to make a fast distrubution, you can also make distribution to he or her by clicking this menu. \n",szItemName,p.szName,p.szName),136,255,255,255)
 						OutputTip(szXml,400,{x,y,w,h})
 					end,p.szName .. " - " .. szItemName,true))
 					table.insert(tMenu,{bDevide = true})
@@ -1975,12 +1976,12 @@ _GKP.DrawDistributeList = function(doodad)
 		frame:Lookup("Btn_Boss").OnLButtonClick = function()
 			local tEquipment = {}
 			for k,v in ipairs(_GKP.aDistributeList) do
-				if v.nGenre == ITEM_GENRE.EQUIPMENT or IsCtrlKeyDown() then -- °´×¡CtrlµÄÇé¿öÏÂ ÎŞÊÓ·ÖÀà ·ñÔòÖ»¸ø×°±¸	
+				if v.nGenre == ITEM_GENRE.EQUIPMENT or IsCtrlKeyDown() then -- æŒ‰ä½Ctrlçš„æƒ…å†µä¸‹ æ— è§†åˆ†ç±» å¦åˆ™åªç»™è£…å¤‡	
 					table.insert(tEquipment,v)
 				end
 			end
 			if #tEquipment == 0 then
-				return GKP.Alert("Ã»ÓĞÊ£ÓàµÄ×°±¸¿ÉÒÔ·ÖÅä¸øÉ¢¼şÀÏ°å¡£")
+				return GKP.Alert(_L["No Equiptment left for Equiptment Boss"])
 			end
 			local p
 			for k,v in ipairs(aPartyMember) do
@@ -1989,13 +1990,13 @@ _GKP.DrawDistributeList = function(doodad)
 					break
 				end
 			end
-			if p and p.bOnlineFlag then  -- Õâ¸öÈË´æÔÚÍÅ¶ÓµÄÇé¿öÏÂ
-				local szXml = GetFormatText("ÄãÈ·¶¨Òª½«ÒÔÏÂÎïÆ·\n", 162,255,255,255)
+			if p and p.bOnlineFlag then  -- è¿™ä¸ªäººå­˜åœ¨å›¢é˜Ÿçš„æƒ…å†µä¸‹
+				local szXml = GetFormatText(_L["Are you sure you want the following item\n"], 162,255,255,255)
 				local r,g,b = GKP.GetForceCol(p.dwForceID)
 				for k,v in ipairs(tEquipment) do
 					szXml = szXml .. GetFormatText("[".. GetItemNameByItem(v) .."]\n", "166"..GetItemFontColorByQuality(v.nQuality, true))
 				end
-				szXml = szXml .. GetFormatText("È«²¿·ÖÅä¸ø ", 162,255,255,255)
+				szXml = szXml .. GetFormatText(_L["All distrubute to"], 162,255,255,255)
 				szXml = szXml .. GetFormatText("[".. p.szName .."]", 162,r,g,b)
 				local msg = {
 					szMessage = szXml, 
@@ -2014,7 +2015,7 @@ _GKP.DrawDistributeList = function(doodad)
 				}
 				MessageBox(msg)	
 			else
-				return GKP.Alert("Ã»ÓĞÊ°È¡¶ÔÏó£¬¿ÉÄÜÊÇµôÏßÁË¡£")
+				return GKP.Alert(_L["No Pick up Object, may due to Network off - line"])
 			end
 		end
 	else
@@ -2022,16 +2023,15 @@ _GKP.DrawDistributeList = function(doodad)
 	end
 end
 ---------------------------------------------------------------------->
--- µ¯³ö¼ÇÕËÒ³Ãæºó·ÖÅä
+-- å¼¹å‡ºè®°è´¦é¡µé¢ååˆ†é…
 ----------------------------------------------------------------------<
 _GKP.DistributeItem = function(item,player,doodad,bEnter)
 	if not item.dwID then
 		_GKP.OnOpenDoodad(_GKP.dwOpenID)
-		GKP.Sysmsg("·ÖÅäÊ§°Ü£¬Í£ÁôÊ±¼ä¹ı³¤userdataÊ§Ğ§£¬Çë³¢ÊÔÖØĞÂ·ÖÅä¡£")
-		return 
+		return GKP.Sysmsg(_L["Userdata is overdue, distribut failed, please try again."])
 	end
 	local szName = GetItemNameByItem(item)
-	if _GKP.Config.Special[szName] or GKP.Config.bDebug then -- ¼Ç×¡ÉÏ´Î·Ö¸øË­
+	if _GKP.Config.Special[szName] or GKP.Config.bDebug then -- è®°ä½ä¸Šæ¬¡åˆ†ç»™è°
 		_GKP.tDistributeRecords[szName] = player.dwID
 		GKP.Debug("memory " .. szName .. " -> " .. player.dwID)
 	end
@@ -2061,14 +2061,14 @@ _GKP.DistributeItem = function(item,player,doodad,bEnter)
 	
 	if GKP.Config.bOn then
 		_GKP.Record(tab,item,bEnter)
-	else -- ¹Ø±ÕµÄÇé¿öËùÓĞ¶«Î÷È«²¿ÈÆ¹ı
+	else -- å…³é—­çš„æƒ…å†µæ‰€æœ‰ä¸œè¥¿å…¨éƒ¨ç»•è¿‡
 		tab.nMoney = 0
 		pcall(GKP,"GKP_Record",tab)
 		pcall(_GKP.Draw_GKP_Record)
 	end
 end
 ---------------------------------------------------------------------->
--- ¼ÇÕËÒ³Ãæ
+-- è®°è´¦é¡µé¢
 ----------------------------------------------------------------------<
 _GKP.Record = function(tab,item,bEnter)
 	local record = GUI(Station.Lookup("Normal1/GKP_Record"))
@@ -2079,8 +2079,8 @@ _GKP.Record = function(tab,item,bEnter)
 	local Source = record:Fetch("Source")
 	local auto = 0
 	record:Fetch("WndCheckBox"):Check(false)
-	if record:IsVisible() and record:Fetch("btn_Close").self.userdata then -- ÉÏ´ÎÊÇuserdata²¢ÇÒÃ»¹Ø±Õ
-		if text:Text() ~= "Ñ¡Ôñ³ÉÔ±" and Name:Text() ~= "" then 
+	if record:IsVisible() and record:Fetch("btn_Close").self.userdata then -- ä¸Šæ¬¡æ˜¯userdataå¹¶ä¸”æ²¡å…³é—­
+		if text:Text() ~= _L["Select Member"] and Name:Text() ~= "" then 
 			Money:Text(0)
 			record:Fetch("btn_ok"):Click()
 		end
@@ -2094,21 +2094,21 @@ _GKP.Record = function(tab,item,bEnter)
 		Name:Text(tab.szName):Enable(false)
 		Source:Text(tab.szNpcName):Enable(false)
 		if _GKP.tLootListMoney[item.dwID] and GKP.Config.bAutoSetMoney then
-			auto = _GKP.tLootListMoney[item.dwID] -- ×Ô¶¯ÉèÖÃ·¢²¼Ê±µÄ½ğÇ®
-		elseif GKP.Config.bAutoBX and tab.szName == "±ÌçôËéÆ¬" and tab.nStackNum and tab.nStackNum >= 1 then
+			auto = _GKP.tLootListMoney[item.dwID] -- è‡ªåŠ¨è®¾ç½®å‘å¸ƒæ—¶çš„é‡‘é’±
+		elseif GKP.Config.bAutoBX and tab.szName == _L["BiXi Fragment"] and tab.nStackNum and tab.nStackNum >= 1 then
 			auto = tab.nStackNum
 		else
 			Money:Text("")
 		end
 		record:Fetch("btn_Close").self.userdata = true
 	else
-		text:Text("Ñ¡Ôñ³ÉÔ±"):Color(255,255,255)
+		text:Text(_L["Select Member"]):Color(255,255,255)
 		text.dwForceID = nil
-		Source:Text("ÊÖ¶¯Ìí¼Ó"):Enable(false)
+		Source:Text(_L["Add Manually"]):Enable(false)
 		Name:Text(""):Enable(true)
 		Money:Text("")
 	end	
-	if tab and type(item) == "number" then -- ±à¼­
+	if tab and type(item) == "number" then -- ç¼–è¾‘
 		text:Text(tab.szPlayer):Color(GKP.GetForceCol(tab.dwForceID))
 		Name:Text(tab.szName or Table_GetItemName(tab.nUiId)):Enable(true)
 		Source:Text(tab.szNpcName):Enable(true)
@@ -2181,10 +2181,10 @@ _GKP.Record = function(tab,item,bEnter)
 		local nMoney = tonumber(Money:Text()) or 0
 		local szPlayer = text:Text()
 		if Name:Text() == "" then
-			return GKP.Alert("ÄãÒª¼ÇÊ²Ã´¶«Î÷×ÜÒªËµÒ»ÏÂ°É¡£")
+			return GKP.Alert(_L["Please entry the name of the item"])
 		end
-		if szPlayer == "Ñ¡Ôñ³ÉÔ±" then
-			return GKP.Alert("Ñ¡ÔñÒ»¸ö¼ÇÕËµÄ³ÉÔ±°ÑÇ®¼Çµ½ËûÍ·ÉÏ°¡£¬ÄãÕæ±¿£¡")
+		if szPlayer == _L["Select Member"] then
+			return GKP.Alert(_L["Select a member who is in charge of account and put money in his account."])
 		end
 
 		tab.szNpcName = Source:Text()
@@ -2195,8 +2195,8 @@ _GKP.Record = function(tab,item,bEnter)
 			if GKP.IsDistributer() then
 				GKP.Talk({
 					GKP.GetFormatLink(tab),
-					{type = "text" ,text = " ".. nMoney .."½ğ"},
-					{type = "text" ,text = " ·ÖÅä¸ø "},
+					{type = "text" ,text = " ".. nMoney .._L["Gold"]},
+					{type = "text" ,text = _L[" Distribute to "]},
 					{type = "name" ,name = tab.szPlayer,text = "[" .. tab.szPlayer .. "]"},
 				})
 				GKP.BgTalk("add",GKP.AscIIEncode(GKP.JsonEncode(tab)))
@@ -2212,8 +2212,8 @@ _GKP.Record = function(tab,item,bEnter)
 				GKP.Talk({
 					{type = "name" ,name = tab.szPlayer,text = "[" .. tab.szPlayer .. "]"},
 					{type = "text" ,text = " " .. tab.szName},
-					{type = "text" ,text = " " .. nMoney .."½ğ"},
-					{type = "text" ,text = " ¶Ô¼ÇÂ¼×öÁËĞŞ¸Ä¡£"},
+					{type = "text" ,text = " " .. nMoney .._L["Gold"]},
+					{type = "text" ,text = _L["Make changes to the record."]},
 				})
 				GKP.BgTalk("edit",GKP.AscIIEncode(GKP.JsonEncode(tab)))
 			end
@@ -2221,15 +2221,15 @@ _GKP.Record = function(tab,item,bEnter)
 			if GKP.IsDistributer() then
 				GKP.Talk({
 					{type = "text" ,text = tab.szName},
-					{type = "text" ,text = " ".. nMoney .."½ğ"},
-					{type = "text" ,text = " ÊÖ¶¯¼ÇÂ¼µ½ "},
+					{type = "text" ,text = " ".. nMoney .._L["Gold"]},
+					{type = "text" ,text = _L["Manually make record to"]},
 					{type = "name" ,name = tab.szPlayer,text = "[" .. tab.szPlayer .. "]"},
 				})
 				GKP.BgTalk("add",GKP.AscIIEncode(GKP.JsonEncode(tab)))
 			end
 		end
 		if record:Fetch("WndCheckBox"):Check() then
-			_GKP.tDistributeRecords["EquipmentBoss"] = tab.szPlayer -- 233333 ²»¹ÜÁË Õâ¸öÍ¦ºÃÍæµÄ
+			_GKP.tDistributeRecords["EquipmentBoss"] = tab.szPlayer -- 233333 ä¸ç®¡äº† è¿™ä¸ªæŒºå¥½ç©çš„
 			_GKP.OnOpenDoodad(_GKP.dwOpenID)
 		end
 		if tab and type(item) == "number" then
@@ -2255,7 +2255,7 @@ _GKP.OpenDoodad = function(arg0)
 	local me = GetClientPlayer()
 	if me and team then
 		local nLootMode = team.nLootMode	
-		if nLootMode == PARTY_LOOT_MODE.DISTRIBUTE or GKP.Config.bDebug then -- ĞèÒª·ÖÅäÕßÄ£Ê½
+		if nLootMode == PARTY_LOOT_MODE.DISTRIBUTE or GKP.Config.bDebug then -- éœ€è¦åˆ†é…è€…æ¨¡å¼
 			_GKP.dwOpenID = arg0
 			_GKP.OnOpenDoodad(arg0)
 		end
@@ -2278,7 +2278,7 @@ _GKP._OpenDoodad = function(arg0)
 			for i = 0, nLootItemCount - 1 do
 				-- item Roll Distribute  Bidding
 				local item, _ , bDist = d.GetLootItem(i,me)
-				if item and bDist then -- Ö»²Ù×÷ĞèÒª·ÖÅäµÄÎïÆ·
+				if item and bDist then -- åªæ“ä½œéœ€è¦åˆ†é…çš„ç‰©å“
 					refresh = true					
 					if item.dwID then
 						local tab = {
@@ -2332,7 +2332,7 @@ RegisterEvent("DISTRIBUTE_ITEM",function() -- DISTRIBUTE_ITEM
 				tab.item = nil
 				table.insert(_GKP.tDistribute,{tab = tab , item = item.item})
 				if me.bFightState then
-					GKP.Sysmsg("²úÉúÁËÒ»Ìõ·ÖÅä¼ÇÂ¼£¬Õ½¶·ÖĞÒÑºöÂÔ£¬ÍÑÀëºó×Ô¶¯µ¯³ö¡£")
+					GKP.Sysmsg(_L["A distribute record has produced, it has been ignored in the combat, it will automatically popup after breaking away from the combat."])
 				else
 					FireEvent("GKP_DISTRIBUTE_ITEM")
 				end
@@ -2395,7 +2395,7 @@ RegisterEvent("CALL_LUA_ERROR", function()
 	end
 end)
 ---------------------------------------------------------------------->
--- ½ğÇ®¼ÇÂ¼
+-- é‡‘é’±è®°å½•
 ----------------------------------------------------------------------<
 _GKP.TradingTarget = {}
 
@@ -2407,7 +2407,7 @@ _GKP.MoneyUpdate = function(nGold, nSilver, nCopper)
 		return
 	end
 	pcall(GKP,"GKP_Account",{
-		nGold = nGold, -- API¸øµÄÓĞÎÊÌâ ¡­¡­ Ö»Ëã½ğ
+		nGold = nGold, -- APIç»™çš„æœ‰é—®é¢˜ â€¦â€¦ åªç®—é‡‘
 		szPlayer = _GKP.TradingTarget.szName or "System",
 		dwForceID = _GKP.TradingTarget.dwForceID,
 		nTime = GetCurrentTime(),
@@ -2417,15 +2417,15 @@ _GKP.MoneyUpdate = function(nGold, nSilver, nCopper)
 	if _GKP.TradingTarget.szName and GKP.Config.bMoneyTalk then
 		if nGold > 0 then
 			GKP.Talk({
-				{type = "text" ,text = "ÊÕµ½À´×Ô "},
+				{type = "text" ,text = _L["Received"]},
 				{type = "name" ,name = _GKP.TradingTarget.szName,text = "[" .. _GKP.TradingTarget.szName .. "]"},
-				{type = "text" ,text = " µÄ " .. nGold .." ½ğ¡£"},
+				{type = "text" ,text = _L["The"] .. nGold .._L[" Gold."]},
 			})
 		else
 			GKP.Talk({
-				{type = "text" ,text = "Ö§¸¶¸ø "},
+				{type = "text" ,text = _L["Pay to"]},
 				{type = "name" ,name = _GKP.TradingTarget.szName,text = "[" .. _GKP.TradingTarget.szName .. "]"},
-				{type = "text" ,text = " " .. nGold * -1 .." ½ğ¡£"},
+				{type = "text" ,text = " " .. nGold * -1 .._L[" Gold."]},
 			})
 		end
 	end
@@ -2460,12 +2460,12 @@ _GKP.Draw_GKP_Account = function(key,sort)
 		if v.szPlayer and v.szPlayer ~= "System" then
 			item:Lookup("Image_NameIcon"):FromUITex(GetForceImage(v.dwForceID))
 			item:Lookup("Text_Name"):SetText(v.szPlayer)
-			item:Lookup("Text_Change"):SetText("Íæ¼Ò½»Ò×")
+			item:Lookup("Text_Change"):SetText(_L["Player's transation"])
 			item:Lookup("Text_Name"):SetFontColor(GKP.GetForceCol(v.dwForceID))
 		else
 			item:Lookup("Image_NameIcon"):FromUITex("ui/Image/uicommon/commonpanel4.UITex",3)
-			item:Lookup("Text_Name"):SetText("ÏµÍ³")
-			item:Lookup("Text_Change"):SetText("½±Àø&ÆäËû·½Ê½")
+			item:Lookup("Text_Name"):SetText(_L["System"])
+			item:Lookup("Text_Change"):SetText(_L["Reward & other ways"])
 		end
 		item:Lookup("Text_Map"):SetText(Table_GetMapName(v.dwMapID))
 		item:Lookup("Text_Time"):SetText(GKP.GetTimeString(v.nTime))		
@@ -2488,8 +2488,8 @@ _GKP.Draw_GKP_Account = function(key,sort)
 		item:Lookup("Text_Name").OnItemMouseEnter = function()
 			local szIcon,nFrame = GetForceImage(v.dwForceID)
 			local r,g,b = GKP.GetForceCol(v.dwForceID)
-			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. "£º\n",136,r,g,b)
-			szXml = szXml .. GetFormatText("---------- Í³¼ÆĞÅÏ¢ÈçÏÂ ----------\n\n",136,255,255,255)
+			local szXml = GetFormatImage(szIcon,nFrame,20,20) .. GetFormatText("  " .. v.szPlayer .. "ï¼š\n",136,r,g,b)
+			szXml = szXml .. GetFormatText(_L["System Information as Shown Below\n\n"],136,255,255,255)
 			local nNum,nNum1,nNum2 = 0,0,0
 			for kk,vv in ipairs(GKP("GKP_Record")) do
 				if vv.szPlayer == v.szPlayer and not vv.bDelete then
@@ -2501,9 +2501,9 @@ _GKP.Draw_GKP_Account = function(key,sort)
 				end
 			end
 			local r,g,b = GKP.GetMoneyCol(nNum)
-			szXml = szXml .. GetFormatText("×Ü¼ÆÏû·Ñ£º",136,255,128,0) .. GetFormatText(nNum .."½ğ¡£\n",136,r,g,b)
+			szXml = szXml .. GetFormatText(_L["Total Cosumption:"],136,255,128,0) .. GetFormatText(nNum .._L["Gold.\n"],136,r,g,b)
 			local r,g,b = GKP.GetMoneyCol(nNum1)
-			szXml = szXml .. GetFormatText("×Ü¼Æ²¹Ìù£º",136,255,128,0) .. GetFormatText(nNum1 .."½ğ¡£\n",136,r,g,b)
+			szXml = szXml .. GetFormatText(_L["Total Allowance:"],136,255,128,0) .. GetFormatText(nNum1 .._L["Gold.\n"],136,r,g,b)
 			
 			for kk,vv in ipairs(GKP("GKP_Account")) do
 				if vv.szPlayer == v.szPlayer and not vv.bDelete and vv.nGold > 0 then
@@ -2511,13 +2511,13 @@ _GKP.Draw_GKP_Account = function(key,sort)
 				end
 			end
 			local r,g,b = GKP.GetMoneyCol(nNum2)
-			szXml = szXml .. GetFormatText("×Ü¼Æ¸¶¿î£º",136,255,128,0) .. GetFormatText(nNum2 .."½ğ¡£\n",136,r,g,b)
+			szXml = szXml .. GetFormatText(_L["Total Payment:"],136,255,128,0) .. GetFormatText(nNum2 .._L["Gold.\n"],136,r,g,b)
 			local nNum3 = nNum+nNum1-nNum2
 			if nNum3 < 0 then
 				nNum3 = 0
 			end
 			local r,g,b = GKP.GetMoneyCol(nNum3)
-			szXml = szXml .. GetFormatText("Ç·Õ®½ğ¶î£º",136,255,128,0) .. GetFormatText(nNum3 .."½ğ¡£\n",136,r,g,b)
+			szXml = szXml .. GetFormatText(_L["Money on Debt:"],136,255,128,0) .. GetFormatText(nNum3 .._L["Gold.\n"],136,r,g,b)
 			
 			local x, y = item:Lookup("Text_No"):GetAbsPos()
 			local w, h = item:Lookup("Text_No"):GetSize()
@@ -2536,38 +2536,38 @@ _GKP.Draw_GKP_Account = function(key,sort)
 	end
 	_GKP.GKP_Account_Container:FormatAllContentPos()
 	local txt = Station.Lookup("Normal/GKP/PageSet_Menu/Page_GKP_Account"):Lookup("","Text_GKP_AccountSettlement")
-	local text = string.format("Í³¼Æ£ºÊÕÈë×Ü¶î £½ %d½ğ£¨ÊÕÈë£º%d½ğ £« Ö§³ö£º%d½ğ£©",a+b,a,b)
+	local text = _L("Statistic: Overall Income = %d Gold (Income: %d Gold + Output: %d Gold)",a+b,a,b)
 	if _GKP.nNowMoney then
-		text = string.format("%s ÉÏÏßÊ±ÉíÉÏÓĞ %d ½ğ¡£",text,_GKP.nNowMoney)
+		text = _L("%s log in with %d Gold in possession",text,_GKP.nNowMoney)
 	end
 	txt:SetText(text)
 	txt:SetFontColor(255,255,0)
 end
 
-RegisterEvent("TRADING_OPEN_NOTIFY",function() -- ½»Ò×¿ªÊ¼
+RegisterEvent("TRADING_OPEN_NOTIFY",function() -- äº¤æ˜“å¼€å§‹
 	_GKP.TradingTarget = GetPlayer(arg0)
 end)
-RegisterEvent("TRADING_CLOSE",function() -- ½»Ò×½áÊø
+RegisterEvent("TRADING_CLOSE",function() -- äº¤æ˜“ç»“æŸ
 	_GKP.TradingTarget = {}
 end)
-RegisterEvent("MONEY_UPDATE",function() --½ğÇ®±ä¶¯
+RegisterEvent("MONEY_UPDATE",function() --é‡‘é’±å˜åŠ¨
 	_GKP.MoneyUpdate(arg0,arg1,arg2)
 end)
 
-JH.PlayerAddonMenu({szOption = "GKP½ğÍÅ¼ÇÂ¼",rgb = {255,255,128} , fnAction = _GKP.OpenPanel})
-JH.AddHotKey("JH_GKP","´ò¿ª/¹Ø±Õ½ğÍÅ¼ÇÂ¼",_GKP.TogglePanel)
+JH.PlayerAddonMenu({szOption = _L["GKP Golden Team Record"],rgb = {255,255,128} , fnAction = _GKP.OpenPanel})
+JH.AddHotKey("JH_GKP",_L["Open/Close Golden Team Record"],_GKP.TogglePanel)
 
 	
 RegisterEvent("LOADING_END",function()
 	if GKP.IsInDungeon() and GKP.Config.bAlertMessage then
 		if not IsEmpty(GKP("GKP_Record")) or not IsEmpty(GKP("GKP_Account")) then
-			GKP.Confirm("Äã¸Õ½øÈë¸±±¾µØÍ¼£¬ÊÇ·ñÒªÇå¿ÕÉÏ´Î¼ÇÂ¼£¿",_GKP.GKP_Clear)
+			GKP.Confirm(_L["Do you want to wipe the previous data when you enter the dungeon's map?"],_GKP.GKP_Clear)
 		end
 	end
 end)
 
 ----------------------------------------------------------
--- ÖØÉËÌáÊ¾
+-- é‡ä¼¤æç¤º
 ----------------------------------------------------------
 
 local DeathWarn = {
@@ -2686,13 +2686,13 @@ function DeathWarn.OnSkillEffectLog(dwCaster, dwTarget, bReact, nEffectType, dwI
 			if szDamage ~= "" then
 				szDamage = szDamage..g_tStrings.STR_COMMA
 			end
-			szDamage = szDamage..nValue.."µãÉËº¦"
+			szDamage = szDamage..nValue.._L["Points harm"]
 		end
 		if szDamage ~= "" then
 			table.insert(DeathWarn.tDamage[dwCaster],{
 				szCaster = DeathWarn.GetName(target),
 				szTarget = DeathWarn.GetName(Caster),
-				szSkillName = "·´µ¯("..szSkillName..")",
+				szSkillName = _L["Bounce"] .. "("..szSkillName..")",
 				szValue = szDamage,
 			})
 		end
@@ -2718,17 +2718,17 @@ DeathWarn.OnCommonHealthLog = function(dwTarget, nDeltaLife)
 				DeathWarn.tDamage[dwTarget] = {}
 			end
 			table.insert(DeathWarn.tDamage[dwTarget],{
-				szCaster = "ÃÈ¶¯Ğ¡»Æ¼¦´ó´ó",
+				szCaster = _L["Unknown"],
 				szTarget = DeathWarn.GetName(target),
-				szSkillName = "Î´Öª¼¼ÄÜ",
-				szValue = nDeltaLife.."µãÉËº¦",
+				szSkillName = _L["Unknown Skill"],
+				szValue = nDeltaLife .. _L["Points harm"],
 			})
 		end
 	end
 end
 
 --[[
-	arg0:"UI_OME_DEATH_NOTIFY" arg1:dwCharacterID arg2: ÎªINT_MAX£¬2147483647 arg3:szKiller  
+	arg0:"UI_OME_DEATH_NOTIFY" arg1:dwCharacterID arg2: ä¸ºINT_MAXï¼Œ2147483647 arg3:szKiller  
 	arg0:"UI_OME_SKILL_EFFECT_LOG" arg1:dwCaster arg2:dwTarget arg3:bReact arg4:nType  arg5:dwID  arg6:dwLevel  arg7:bCriticalStrike arg8:nResultCount 
 	arg0:"UI_OME_COMMON_HEALTH_LOG" arg1:dwCharacterID arg2:nDeltaLife  
 ]]
@@ -2751,16 +2751,16 @@ DeathWarn.OnDeath = function(dwTarget, szKiller)
 			end
 			DeathWarn.tDamage[dwTarget] = nil
 			if GKP.Config.bDeathWarn then
-				OutputMessage("MSG_SYS","ÖØÉËÌáÊ¾£º["..tInfo.szTarget.."]±»["..tInfo.szCaster.."]µÄ<"..tInfo.szSkillName..">Ôì³ÉÁË"..tInfo.szValue.."£¬µ¼ÖÂÖØÉË£¡\n")
+				OutputMessage("MSG_SYS",_L["Boardcast of Serious Injure:"] .. "["..tInfo.szTarget.."]" .. _L["By"] .. "["..tInfo.szCaster.."]" .. _L["The"] .."<"..tInfo.szSkillName..">" .. _L["Lead to"] .. ""..tInfo.szValue.."ï¼Œ" .. _L["Serious injured!"] .. "\n")
 			end
 		end
 	end
 end
 
 RegisterEvent("SYS_MSG",function()
-	if arg0 == "UI_OME_DEATH_NOTIFY" then -- ËÀÍö¼ÇÂ¼
+	if arg0 == "UI_OME_DEATH_NOTIFY" then -- æ­»äº¡è®°å½•
 		DeathWarn.OnDeath(arg1, arg3)
-	elseif arg0 == "UI_OME_SKILL_EFFECT_LOG" then -- ¼¼ÄÜ¼ÇÂ¼
+	elseif arg0 == "UI_OME_SKILL_EFFECT_LOG" then -- æŠ€èƒ½è®°å½•
 		DeathWarn.OnSkillEffectLog(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9)
 	elseif arg0 == "UI_OME_COMMON_HEALTH_LOG" then
 		DeathWarn.OnCommonHealthLog(arg1,arg2)
